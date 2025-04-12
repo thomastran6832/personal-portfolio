@@ -2,23 +2,23 @@ vCard - Personal Portfolio
 
 # sidebar
 
-alt = Richard hanrick
+alt = Thomas Tran
 Richard hanrick
 Web developer
 
 Show Contacts
 
 Email
-richard@example.com
+thomastran6832@gmail.com
 
 Phone
-+1 (213) 352-2795
++(84)-961407981
 
 Birthday
-June 23, 1982
+1997
 
 Location
-Sacramento, California, USA
+Ho Chi Minh City, Viet Nam
 
 # navbar
 
