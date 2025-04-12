@@ -1,39 +1,14 @@
-backend:
-  name: git-gateway
-  branch: main # Branch to update
-
-media_folder: "public/images/uploads" # Media files will be stored here
-public_folder: "/images/uploads" # The src attribute for uploaded media
-
-collections:
-  - name: "projects"
-    label: "Projects"
-    folder: "src/content/projects"
-    create: true
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Technologies", name: "technologies", widget: "list" }
-      - { label: "Link", name: "link", widget: "string", required: false }
-      - { label: "GitHub", name: "github", widget: "string", required: false }
-  
-  - name: "skills"
-    label: "Skills"
-    folder: "src/content/skills"
-    create: true
-    fields:
-      - { label: "Name", name: "name", widget: "string" }
-      - { label: "Category", name: "category", widget: "select", options: ["frontend", "backend", "other"] }
-      - { label: "Icon", name: "icon", widget: "string", required: false }
-  
-  - name: "experience"
-    label: "Experience"
-    folder: "src/content/experience"
-    create: true
-    fields:
-      - { label: "Company", name: "company", widget: "string" }
-      - { label: "Position", name: "position", widget: "string" }
-      - { label: "Start Date", name: "startDate", widget: "datetime", date_format: "MM/YYYY" }
-      - { label: "End Date", name: "endDate", widget: "datetime", date_format: "MM/YYYY", required: false }
-      - { label: "Description", name: "description", widget: "text" }
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Admin</title>
+    <!-- Include the Netlify CMS script -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <!-- Include the script that builds the page and powers Netlify CMS -->
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  </body>
+</html>
