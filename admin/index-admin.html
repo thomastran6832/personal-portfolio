@@ -1,14 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio Admin</title>
-    <!-- Include the Netlify CMS script -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  </head>
-  <body>
-    <!-- Include the script that builds the page and powers Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Admin</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Include the script that builds the page and powers Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.10.192/dist/netlify-cms.js"></script>
+  
+  <script>
+    // Configure Netlify CMS directly in the HTML file
+    // This is necessary since we're not using the standard admin/config.yml approach
+    const config = {
+      backend: {
+        name: "git-gateway",
+        branch: "main" // Change to your default branch if different
+      },
+      
+      // Publish mode option
+      publish_mode: "editorial_workflow",
+      
+      // Media folder for uploads
+      media_folder: "images/uploads",
+      public_folder: "/images/uploads",
+      
+      collections: [
+        // About Me section
+        {
+          name: "about",
+          label: "About Me",
+          folder: "content/about",
+          create: true,
+          slug: "{{slug}}",
+          fields: [
+            {label: "Title", name: "title", widget: "string"},
+            {label: "Profile Image", name: "profile_image", widget: "image"},
+            {label: "Bio", name: "body", widget: "markdown"},
+            {label: "Skills", name: "skills", widget: "list"}
+          ]
+        },
+        
+        // Projects section
+        {
+          name: "projects",
+          label: "Projects",
+          folder: "content/projects",
+          create: true,
+          slug: "{{year}}-{{month}}-{{day}}-{{slug}}",
+          fields: [
+            {label: "Title", name: "title", widget: "string"},
+            {label: "Description", name: "description", widget: "text"},
+            {label: "Project Image", name: "image", widget: "image"},
+            {label: "Project URL", name: "url", widget: "string", required: false},
+            {label: "GitHub URL", name: "github", widget: "string", required: false},
+            {label: "Technologies Used", name: "tech", widget: "list"},
+            {label: "Content", name: "body", widget: "markdown"}
+          ]
+        },
+        
+        // Experience section
+        {
+          name: "experience",
+          label: "Experience",
+          folder: "content/experience",
+          create: true,
+          slug: "{{slug}}",
+          fields: [
+            {label: "Company", name: "company", widget: "string"},
+            {label: "Position", name: "position", widget: "string"},
+            {label: "Start Date", name: "start_date", widget: "date", format: "MMM YYYY"},
+            {label: "End Date", name: "end_date", widget: "date", format: "MMM YYYY", required: false},
+            {label: "Current Job", name: "current", widget: "boolean", default: false},
+            {label: "Description", name: "body", widget: "markdown"}
+          ]
+        },
+        
+        // Site configuration
+        {
+          name: "config",
+          label: "Site Configuration",
+          files: [
+            {
+              label: "Navigation",
+              name: "navigation",
+              file: "content/config/navigation.yml",
+              fields: [
+                {
+                  label: "Navigation Items",
+                  name: "nav_items",
+                  widget: "list",
+                  fields: [
+                    {label: "Label", name: "label", widget: "string"},
+                    {label: "URL", name: "url", widget: "string"}
+                  ]
+                }
+              ]
+            },
+            {
+              label: "Contact Information",
+              name: "contact",
+              file: "content/config/contact.yml",
+              fields: [
+                {label: "Email", name: "email", widget: "string"},
+                {label: "LinkedIn", name: "linkedin", widget: "string", required: false},
+                {label: "GitHub", name: "github", widget: "string", required: false},
+                {label: "Twitter", name: "twitter", widget: "string", required: false}
+              ]
+            }
+          ]
+        }
+      ]
+    };
+    
+    // Initialize CMS with our config
+    window.CMS_MANUAL_INIT = true;
+    window.addEventListener('load', function() {
+      CMS.init({config: config});
+    });
+  </script>
+</body>
 </html>

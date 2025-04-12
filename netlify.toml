@@ -1,0 +1,14 @@
+[build]
+  publish = "."  # This should be the directory where your site files are
+
+# Redirects for single-page application navigation
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+# Explicitly exclude redirects for admin page
+[[redirects]]
+  from = "/index-admin.html"
+  to = "/index-admin.html"
+  status = 200
