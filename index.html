@@ -938,29 +938,68 @@
 
         </section> -->
         
-        <!-- Projects Section -->
-        <section class="projects" id="projects">
-          <div class="container">
-              <h2 class="section-title">My Projects</h2>
-              <!-- Keep your existing filter buttons if you have them -->
-              <div class="project-filters">
-                  <button class="project-filter active" data-filter="all">All</button>
-                  <button class="project-filter" data-filter="web">Web</button>
-                  <button class="project-filter" data-filter="app">Mobile</button>
-                  <button class="project-filter" data-filter="design">Design</button>
+        <section class="projects">
+
+          <ul class="filter-list">
+      
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+      
+            <li class="filter-item">
+              <button data-filter-btn>Web design</button>
+            </li>
+      
+            <li class="filter-item">
+              <button data-filter-btn>Applications</button>
+            </li>
+      
+            <li class="filter-item">
+              <button data-filter-btn>Web development</button>
+            </li>
+      
+          </ul>
+      
+          <div class="filter-select-box">
+      
+            <button class="filter-select" data-select>
+      
+              <div class="select-value" data-selecct-value>Select category</div>
+      
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
               </div>
-              
-              <!-- This div will be populated with projects from projects.json -->
-              <div id="projects-container" class="projects-grid">
-                  <!-- Projects will be loaded here -->
-                  <div class="loading">Loading projects...</div>
-              </div>
-              
-              <!-- Optional: Link to a dedicated projects page -->
-              <div class="projects-footer">
-                  <a href="projects.html" class="btn primary-btn">View All Projects</a>
-              </div>
+      
+            </button>
+      
+            <ul class="select-list">
+      
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+      
+              <li class="select-item">
+                <button data-select-item>Web design</button>
+              </li>
+      
+              <li class="select-item">
+                <button data-select-item>Applications</button>
+              </li>
+      
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+      
+            </ul>
+      
           </div>
+      
+          <!-- This is where project items will be loaded -->
+          <ul class="project-list" id="projects-container">
+            <!-- Projects will be loaded here by JavaScript -->
+            <li class="loading">Loading projects...</li>
+          </ul>
+      
         </section>
 
       </article>
@@ -1234,6 +1273,30 @@
       });
     }
   </script>
+
+    <!--
+    - project data js
+  -->
+  <script src="./assets/js/project-data.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/index-admin.html";
+          });
+        }
+      });
+    }
+  </script>
+
   <script src="/js/content-loader.js"></script>
   <script src="js/project-data.js"></script>
 

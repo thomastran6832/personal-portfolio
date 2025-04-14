@@ -1,85 +1,72 @@
-// Load project data from JSON file
+// Load project data for portfolio section
 document.addEventListener('DOMContentLoaded', function() {
     // Find the projects container
     const projectsContainer = document.getElementById('projects-container');
     
-    // Exit if container doesn't exist (not on a page with projects)
+    // Exit if container doesn't exist
     if (!projectsContainer) return;
     
-    // Function to load projects
-    async function loadProjects() {
-        try {
-            // Fetch project data
-            const response = await fetch('data/project.json');
-            const data = await response.json();
-            
-            // Clear loading message
-            projectsContainer.innerHTML = '';
-            
-            // Create project cards for each project
-            data.projects.forEach(project => {
-                // Create HTML that matches your existing design
-                const projectCard = `
-                    <div class="project-card" data-category="${project.category}">
-                        <div class="project-img">
-                            <img src="${project.image}" alt="${project.title}">
-                        </div>
-                        <div class="project-content">
-                            <h3>${project.title}</h3>
-                            <p>${project.description}</p>
-                            <div class="project-tech">
-                                ${project.technologies.map(tech => `<span>${tech}</span>`).join('')}
-                            </div>
-                            <div class="project-links">
-                                ${project.github ? `<a href="${project.github}" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>` : ''}
-                                ${project.demo ? `<a href="${project.demo}" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live</a>` : ''}
-                            </div>
-                        </div>
+    // Project data directly in the JS file
+    const projectsData = {
+        "projects": [
+            {
+                "id": "project1",
+                "title": "E-Commerce Website",
+                "description": "A fully responsive e-commerce platform with product management, shopping cart, and secure checkout functionality.",
+                "image": "./assets/images/project-1.jpg",
+                "technologies": ["React", "Node.js", "MongoDB"],
+                "github": "https://github.com/yourusername/project1",
+                "demo": "https://project1-demo.com",
+                "category": "web development"
+            },
+            {
+                "id": "project2",
+                "title": "Fitness Tracker App",
+                "description": "A mobile application that helps users track their fitness activities, set goals, and monitor their progress.",
+                "image": "./assets/images/project-2.png",
+                "technologies": ["React Native", "Firebase", "Redux"],
+                "github": "https://github.com/yourusername/project2",
+                "demo": "https://project2-demo.com",
+                "category": "applications"
+            },
+            {
+                "id": "project3",
+                "title": "Portfolio Website",
+                "description": "A personal portfolio website showcasing my projects and skills, built with modern web technologies.",
+                "image": "./assets/images/project-3.jpg",
+                "technologies": ["HTML", "CSS", "JavaScript"],
+                "github": "https://github.com/thomastran6832/personal-portfolio",
+                "demo": "https://thomastran.netlify.app",
+                "category": "web design"
+            }
+        ]
+    };
+    
+    // Clear loading message
+    projectsContainer.innerHTML = '';
+    
+    // Create project cards using the existing HTML structure in your template
+    projectsData.projects.forEach(project => {
+        // Create HTML using the same structure as your existing portfolio items
+        const projectItem = document.createElement('li');
+        projectItem.className = 'project-item active';
+        projectItem.setAttribute('data-filter-item', '');
+        projectItem.setAttribute('data-category', project.category);
+        
+        const projectHTML = `
+            <a href="${project.demo}" target="_blank">
+                <figure class="project-img">
+                    <div class="project-item-icon-box">
+                        <ion-icon name="eye-outline"></ion-icon>
                     </div>
-                `;
-                
-                // Add to container
-                projectsContainer.innerHTML += projectCard;
-            });
-            
-            // Initialize project filters
-            initializeProjectFilters();
-            
-        } catch (error) {
-            console.error('Error loading projects:', error);
-            projectsContainer.innerHTML = '<p>Error loading projects. Please try again later.</p>';
-        }
-    }
-    
-    // Load projects
-    loadProjects();
-    
-    // Initialize project filters (assuming you have filter functionality)
-    function initializeProjectFilters() {
-        const filterButtons = document.querySelectorAll('.project-filter');
-        const projectCards = document.querySelectorAll('.project-card');
+                    <img src="${project.image}" alt="${project.title}" loading="lazy">
+                </figure>
+                <h3 class="project-title">${project.title}</h3>
+                <p class="project-category">${project.category}</p>
+            </a>
+        `;
         
-        // Skip if no filter buttons
-        if (!filterButtons.length) return;
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Filter projects
-                const filter = button.getAttribute('data-filter');
-                
-                projectCards.forEach(card => {
-                    if (filter === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        const category = card.getAttribute('data-category');
-                        card.style.display = category.includes(filter) ? 'block' : 'none';
-                    }
-                });
-            });
-        });
-    }
+        projectItem.innerHTML = projectHTML;
+        projectsContainer.appendChild(projectItem);
+    });
 });
