@@ -1,0 +1,34 @@
+{
+    "projects": [
+      {
+        "id": "project1",
+        "title": "E-Commerce Website",
+        "description": "A fully responsive e-commerce platform with product management, shopping cart, and secure checkout functionality.",
+        "image": "/assets/images/project1.jpg",
+        "technologies": ["React", "Node.js", "MongoDB"],
+        "github": "https://github.com/yourusername/project1",
+        "demo": "https://project1-demo.com",
+        "category": "web"
+      },
+      {
+        "id": "project2",
+        "title": "Fitness Tracker App",
+        "description": "A mobile application that helps users track their fitness activities, set goals, and monitor their progress.",
+        "image": "/assets/images/project2.jpg",
+        "technologies": ["React Native", "Firebase", "Redux"],
+        "github": "https://github.com/yourusername/project2",
+        "demo": "https://project2-demo.com",
+        "category": "app"
+      },
+      {
+        "id": "project3",
+        "title": "Portfolio Website",
+        "description": "A personal portfolio website showcasing my projects and skills, built with modern web technologies.",
+        "image": "/assets/images/project3.jpg",
+        "technologies": ["HTML", "CSS", "JavaScript"],
+        "github": "https://github.com/thomastran6832/personal-portfolio",
+        "demo": "https://thomastran.netlify.app",
+        "category": "web design"
+      }
+    ]
+  }

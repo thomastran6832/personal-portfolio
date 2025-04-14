@@ -714,7 +714,7 @@
           <h2 class="h2 article-title">Portfolio</h2>
         </header>
 
-        <section class="projects">
+        <!-- <section class="projects">
 
           <ul class="filter-list">
 
@@ -936,6 +936,31 @@
 
           </ul>
 
+        </section> -->
+        
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+          <div class="container">
+              <h2 class="section-title">My Projects</h2>
+              <!-- Keep your existing filter buttons if you have them -->
+              <div class="project-filters">
+                  <button class="project-filter active" data-filter="all">All</button>
+                  <button class="project-filter" data-filter="web">Web</button>
+                  <button class="project-filter" data-filter="app">Mobile</button>
+                  <button class="project-filter" data-filter="design">Design</button>
+              </div>
+              
+              <!-- This div will be populated with projects from projects.json -->
+              <div id="projects-container" class="projects-grid">
+                  <!-- Projects will be loaded here -->
+                  <div class="loading">Loading projects...</div>
+              </div>
+              
+              <!-- Optional: Link to a dedicated projects page -->
+              <div class="projects-footer">
+                  <a href="projects.html" class="btn primary-btn">View All Projects</a>
+              </div>
+          </div>
         </section>
 
       </article>
