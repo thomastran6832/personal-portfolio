@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function loadProjects() {
         try {
             // Fetch project data
-            const response = await fetch('data/projects.json');
+            const response = await fetch('data/project.json');
             const data = await response.json();
             
             // Clear loading message
