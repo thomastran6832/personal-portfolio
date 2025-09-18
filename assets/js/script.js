@@ -55,6 +55,10 @@ overlay.addEventListener("click", testimonialsModalFunc);
 
 
 
+// NOTE: Filter functionality has been moved to project-data.js for dynamic category generation
+// This section is commented out to prevent conflicts with the dynamic filtering system
+
+/*
 // custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
@@ -112,6 +116,7 @@ for (let i = 0; i < filterBtn.length; i++) {
   });
 
 }
+*/
 
 
 
@@ -140,20 +145,66 @@ for (let i = 0; i < formInputs.length; i++) {
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
-// add event to all nav link
+// Function to activate a specific page
+function activatePage(targetPage) {
+  for (let i = 0; i < pages.length; i++) {
+    if (pages[i].dataset.page === targetPage) {
+      pages[i].classList.add("active");
+      navigationLinks[i].classList.add("active");
+    } else {
+      pages[i].classList.remove("active");
+      navigationLinks[i].classList.remove("active");
+    }
+  }
+  // Update URL hash and save to localStorage
+  window.location.hash = targetPage;
+  localStorage.setItem('activeTab', targetPage);
+  window.scrollTo(0, 0);
+}
+
+// Initialize page based on URL hash or localStorage
+function initializePage() {
+  let targetPage = null;
+
+  // Check URL hash first (priority)
+  if (window.location.hash) {
+    targetPage = window.location.hash.substring(1); // Remove #
+  }
+
+  // If no hash, check localStorage
+  if (!targetPage) {
+    targetPage = localStorage.getItem('activeTab');
+  }
+
+  // If no saved tab, default to 'about'
+  if (!targetPage) {
+    targetPage = 'about';
+  }
+
+  // Validate that the target page exists
+  const pageExists = Array.from(pages).some(page => page.dataset.page === targetPage);
+  if (!pageExists) {
+    targetPage = 'about';
+  }
+
+  activatePage(targetPage);
+}
+
+// Add event to all nav links
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
-
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
-
+    const targetPage = this.innerHTML.toLowerCase();
+    activatePage(targetPage);
   });
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('hashchange', function() {
+  const targetPage = window.location.hash.substring(1) || 'about';
+  activatePage(targetPage);
+});
+
+// Initialize page when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initializePage();
+});

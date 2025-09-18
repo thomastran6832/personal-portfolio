@@ -1,14 +1,33 @@
 [build]
-  publish = "."  # This should be the directory where your site files are
+  publish = "."
 
-# Redirects for single-page application navigation
+[context.production.environment]
+  NODE_ENV = "production"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Admin security - redirect /admin to secure login
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 301
+
+# Contact form handling
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Main site navigation (keep at bottom)
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-  
-# Explicitly exclude redirects for admin page
-[[redirects]]
-  from = "/index-admin.html"
-  to = "/index-admin.html"
   status = 200
