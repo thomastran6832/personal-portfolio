@@ -139,11 +139,126 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// Slack integration
+const SLACK_WEBHOOK_URL = window.SLACK_WEBHOOK_URL || process.env.SLACK_WEBHOOK_URL;
+
+async function sendToSlack(formData) {
+  const messageText = `🔔 *New Portfolio Contact Form Submission*
+
+👤 *Name:* ${formData.fullname}
+📧 *Email:* ${formData.email || "Not provided"}
+💬 *Message:*
+${formData.message}
+
+⏰ *Received:* ${new Date().toLocaleString()}`;
+
+  const slackMessage = {
+    text: messageText
+  };
+
+  try {
+    console.log('Sending to Slack:', slackMessage); // Debug log
+    const response = await fetch(SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(slackMessage)
+    });
+
+    console.log('Slack response status:', response.status); // Debug log
+    if (!response.ok) {
+      console.error('Slack response error:', await response.text());
+    }
+
+    return response.ok;
+  } catch (error) {
+    console.error('Failed to send to Slack:', error);
+    return false;
+  }
+}
+
+// Enhanced form submission handler
+if (form) {
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {
+      fullname: formData.get('fullname'),
+      email: formData.get('email'),
+      message: formData.get('message')
+    };
+
+    // Disable submit button during submission
+    formBtn.style.opacity = '0.7';
+    formBtn.style.cursor = 'not-allowed';
+    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
+
+    try {
+      // Send to Formspree (email)
+      const emailResponse = await fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      // Send to Slack
+      const slackSuccess = await sendToSlack(data);
+
+      if (emailResponse.ok) {
+        // Success message
+        formBtn.style.background = 'linear-gradient(45deg, #4caf50, #45a049)';
+        formBtn.innerHTML = '<ion-icon name="checkmark-circle"></ion-icon><span>Message Sent!</span>';
+
+        // Reset form
+        this.reset();
+        formBtn.setAttribute("disabled", "");
+
+        // Show success notification
+        if (slackSuccess) {
+          console.log('✅ Message sent to both Email and Slack');
+        } else {
+          console.log('✅ Message sent to Email (Slack failed)');
+        }
+
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          formBtn.style.background = 'linear-gradient(45deg, #ffdb70, #ffc107)';
+          formBtn.style.opacity = '1';
+          formBtn.style.cursor = 'pointer';
+          formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
+        }, 3000);
+
+      } else {
+        throw new Error('Email submission failed');
+      }
+
+    } catch (error) {
+      // Error message
+      formBtn.style.background = 'linear-gradient(45deg, #f44336, #d32f2f)';
+      formBtn.innerHTML = '<ion-icon name="close-circle"></ion-icon><span>Failed to Send</span>';
+
+      console.error('❌ Failed to send message:', error);
+
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        formBtn.style.background = 'linear-gradient(45deg, #ffdb70, #ffc107)';
+        formBtn.style.opacity = '1';
+        formBtn.style.cursor = 'pointer';
+        formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
+      }, 3000);
+    }
+  });
+}
+
 
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
+const pages = document.querySelectorAll("article[data-page]");
 
 // Function to activate a specific page
 function activatePage(targetPage) {
@@ -176,15 +291,15 @@ function initializePage() {
     targetPage = localStorage.getItem('activeTab');
   }
 
-  // If no saved tab, default to 'resume'
+  // If no saved tab, default to 'about'
   if (!targetPage) {
-    targetPage = 'resume';
+    targetPage = 'about';
   }
 
   // Validate that the target page exists
   const pageExists = Array.from(pages).some(page => page.dataset.page === targetPage);
   if (!pageExists) {
-    targetPage = 'resume';
+    targetPage = 'about';
   }
 
   activatePage(targetPage);
@@ -200,7 +315,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 // Handle browser back/forward buttons
 window.addEventListener('hashchange', function() {
-  const targetPage = window.location.hash.substring(1) || 'resume';
+  const targetPage = window.location.hash.substring(1) || 'about';
   activatePage(targetPage);
 });
 
