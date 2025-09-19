@@ -284,6 +284,7 @@ article.active {
   box-shadow: var(--shadow-2);
   cursor: pointer;
   z-index: 1;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .content-card::before {
@@ -293,6 +294,119 @@ article.active {
   background: var(--bg-gradient-jet);
   border-radius: inherit;
   z-index: -1;
+  transition: background 0.3s ease;
+}
+
+/* ===== OPTION 1: PREMIUM GRADIENT GLOW ===== */
+.content-card[data-page="about"].option-1 {
+  overflow: hidden;
+  position: relative;
+}
+
+.content-card[data-page="about"].option-1::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ffdb70, #ffc107, #ff9800, #ffdb70);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  z-index: -3;
+  opacity: 0;
+  animation: gradientShift 3s ease infinite;
+  transition: opacity 0.3s ease;
+}
+
+.content-card[data-page="about"].option-1:hover {
+  transform: translateY(-8px) scale(1.03) rotateX(2deg);
+  box-shadow: 0 15px 40px rgba(255, 219, 112, 0.4);
+}
+
+.content-card[data-page="about"].option-1:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ===== OPTION 2: NEON CYBERPUNK ===== */
+.content-card[data-page="about"].option-2:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 0 20px #ffdb70,
+    0 0 40px #ffdb70,
+    0 0 60px #ffdb70,
+    inset 0 0 20px rgba(255, 219, 112, 0.1);
+  border: 2px solid #ffdb70;
+  text-shadow: 0 0 10px rgba(255, 219, 112, 0.8);
+}
+
+.content-card[data-page="about"].option-2:hover .h3 {
+  color: #ffdb70;
+  text-shadow: 0 0 10px #ffdb70;
+}
+
+/* ===== OPTION 3: FLOATING PARTICLES ===== */
+.content-card[data-page="about"].option-3 .h3::after {
+  content: '✨';
+  position: absolute;
+  right: -5px;
+  top: -2px;
+  opacity: 0;
+  transform: translateY(10px) scale(0.5);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: float 2s ease-in-out infinite;
+}
+
+.content-card[data-page="about"].option-3:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(255, 219, 112, 0.3);
+}
+
+.content-card[data-page="about"].option-3:hover .h3::after {
+  opacity: 1;
+  transform: translateY(-2px) scale(1);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(5deg); }
+}
+
+/* ===== OPTION 4: GLASS MORPHISM ===== */
+.content-card[data-page="about"].option-4:hover {
+  transform: translateY(-5px) scale(1.02);
+  background: rgba(255, 219, 112, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 219, 112, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* ===== OPTION 5: SHIMMER TEXT WAVE ===== */
+.content-card[data-page="about"].option-5:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 219, 112, 0.3);
+}
+
+.content-card[data-page="about"].option-5:hover .h3 {
+  background: linear-gradient(90deg, #ffdb70, #fff, #ffdb70);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
 
@@ -468,6 +582,22 @@ main {
   border-radius: 12px 12px 0 0;
   box-shadow: var(--shadow-2);
   z-index: 5;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar.sticky {
+  position: fixed;
+  top: 20px;
+  bottom: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 500px;
+  border-radius: 50px;
+  background: hsla(240, 1%, 12%, 0.9);
+  backdrop-filter: blur(20px);
+  border: 2px solid var(--orange-yellow-crayola);
+  box-shadow: 0 10px 40px rgba(255, 193, 7, 0.3);
 }
 
 .navbar-list {
@@ -476,13 +606,36 @@ main {
   justify-content: center;
   align-items: center;
   padding: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.navbar.sticky .navbar-list {
+  padding: 8px 30px;
+  gap: 10px;
 }
 
 .navbar-link {
   color: var(--light-gray);
   font-size: var(--fs-8);
   padding: 20px 7px;
-  transition: color var(--transition-1);
+  transition: all var(--transition-1);
+  border-radius: 25px;
+}
+
+.navbar.sticky .navbar-link {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.navbar.sticky .navbar-link:hover {
+  background: hsla(45, 100%, 72%, 0.1);
+  color: var(--orange-yellow-crayola);
+}
+
+.navbar.sticky .navbar-link.active {
+  background: var(--orange-yellow-crayola);
+  color: var(--eerie-black-1);
 }
 
 .navbar-link:hover,

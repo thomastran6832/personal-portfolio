@@ -18,7 +18,7 @@
       window.SLACK_WEBHOOK_URL = window.SLACK_WEBHOOK_URL || '';
     } else {
       // Local development - use actual URL for testing
-      window.SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+      window.SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
     }
 
     // Log environment status (remove in production)

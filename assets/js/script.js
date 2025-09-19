@@ -143,95 +143,197 @@ for (let i = 0; i < formInputs.length; i++) {
 const getSlackWebhookURL = () => {
   return window.SLACK_WEBHOOK_URL ||
          (typeof process !== 'undefined' && process.env && process.env.SLACK_WEBHOOK_URL) ||
-         'https://hooks.slack.com/services/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';
+         'https://hooks.slack.com/services/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';
 };
 
 async function sendToSlack(formData) {
-  const messageText = `🔔 *New Portfolio Contact Form Submission*
-
-👤 *Name:* ${formData.fullname}
-📧 *Email:* ${formData.email || "Not provided"}
-💬 *Message:*
-${formData.message}
-
-⏰ *Received:* ${new Date().toLocaleString()}`;
-
-  const slackMessage = {
-    text: messageText
-  };
-
-  const webhookURL = getSlackWebhookURL();
-
-  if (!webhookURL || webhookURL === '') {
-    console.error('❌ Slack webhook URL not configured');
-    return false;
-  }
-
   try {
-    console.log('📤 Sending to Slack:', slackMessage);
-    console.log('🔗 Using webhook URL:', webhookURL.substring(0, 50) + '...');
+    console.log('📤 Sending to Slack via Netlify function...');
 
-    const response = await fetch(webhookURL, {
+    // Use Netlify function instead of direct Slack webhook
+    const response = await fetch('/.netlify/functions/slack-notify', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(slackMessage)
+      body: JSON.stringify({
+        fullname: formData.fullname,
+        email: formData.email,
+        message: formData.message
+      })
     });
 
-    const responseText = await response.text();
-    console.log('📨 Slack response status:', response.status);
-    console.log('📨 Slack response text:', responseText);
+    console.log('📨 Function response status:', response.status);
 
-    if (response.ok && responseText === 'ok') {
-      console.log('✅ Message successfully sent to Slack!');
-      return true;
-    } else {
-      console.error('❌ Slack webhook failed:', responseText);
-      // Check if it's a webhook issue
-      if (responseText === 'no_service') {
-        console.error('🔧 Webhook URL appears to be invalid or expired. Please check your Slack webhook configuration.');
+    if (response.ok) {
+      const result = await response.json();
+      console.log('📨 Function response:', result);
+
+      if (result.success) {
+        console.log('✅ Message successfully sent to Slack via function!');
+        return { success: true, message: 'Slack notification sent successfully' };
+      } else {
+        console.error('❌ Function reported error:', result.error);
+        return { success: false, error: result.error || 'Unknown function error' };
       }
-      return false;
+    } else {
+      const errorText = await response.text();
+      console.error('❌ Function HTTP error:', response.status, errorText);
+      return { success: false, error: `Function error: ${response.status}` };
     }
+
   } catch (error) {
-    console.error('❌ Failed to send to Slack:', error);
-    return false;
+    console.error('❌ Network error calling function:', error);
+    return { success: false, error: `Network error: ${error.message}` };
   }
+}
+
+// Function to show popup message
+function showPopupMessage(message, isSuccess = true) {
+  // Remove existing popup if any
+  const existingPopup = document.querySelector('.popup-message');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  // Create popup element
+  const popup = document.createElement('div');
+  popup.className = 'popup-message';
+  popup.innerHTML = `
+    <div class="popup-content">
+      <div class="popup-icon">${isSuccess ? '✅' : '❌'}</div>
+      <div class="popup-text">${message}</div>
+    </div>
+  `;
+
+  // Add styles
+  popup.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #2a2a2b, #1e1e1f);
+    border: 2px solid ${isSuccess ? '#4CAF50' : '#f44336'};
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    text-align: center;
+    min-width: 300px;
+    opacity: 0;
+    animation: popupFadeIn 0.3s ease forwards;
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes popupFadeIn {
+      from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+    @keyframes popupFadeOut {
+      from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      to { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+    .popup-content {
+      color: #fff;
+    }
+    .popup-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    .popup-text {
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+  `;
+
+  document.head.appendChild(style);
+  document.body.appendChild(popup);
+
+  // Auto-remove after 4 seconds
+  setTimeout(() => {
+    popup.style.animation = 'popupFadeOut 0.3s ease forwards';
+    setTimeout(() => {
+      popup.remove();
+      style.remove();
+    }, 300);
+  }, 4000);
 }
 
 // Enhanced form submission handler for Netlify Forms
 if (form) {
   form.addEventListener('submit', function(e) {
-    // Allow form to submit normally to Netlify
-    // Just provide visual feedback
+    e.preventDefault(); // Prevent default submission for custom handling
 
     // Disable submit button during submission
     formBtn.style.opacity = '0.7';
     formBtn.style.cursor = 'not-allowed';
     formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
 
-    // Optional: Try to send to Slack as backup notification
+    // Get form data
     const formData = new FormData(this);
-    const data = {
-      fullname: formData.get('fullname'),
-      email: formData.get('email'),
-      message: formData.get('message')
-    };
 
-    // Try Slack notification (non-blocking)
-    sendToSlack(data).then(slackSuccess => {
-      if (slackSuccess) {
-        console.log('✅ Also sent notification to Slack');
-      } else {
-        console.log('ℹ️ Slack notification failed, but form will still submit to Netlify');
-      }
-    }).catch(error => {
-      console.log('ℹ️ Slack notification error:', error);
+    // Submit to Netlify
+    fetch('/', {
+      method: 'POST',
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString()
+    })
+    .then(() => {
+      // Show success popup
+      showPopupMessage('Message sent successfully! Wait for a few hours, I will contact you back.', true);
+
+      // Send to Slack (separate from Netlify)
+      const data = {
+        fullname: formData.get('fullname'),
+        email: formData.get('email'),
+        message: formData.get('message')
+      };
+
+      sendToSlack(data).then(slackResult => {
+        if (slackResult.success) {
+          console.log('✅ Slack notification sent:', slackResult.message);
+          // Show brief success indicator for Slack
+          setTimeout(() => {
+            const popup = document.querySelector('.popup-message');
+            if (popup) {
+              popup.querySelector('.popup-text').innerHTML += '<br><small style="color: #4CAF50;">✅ Slack notification sent</small>';
+            }
+          }, 500);
+        } else {
+          console.log('⚠️ Slack notification failed:', slackResult.error);
+          // Show warning but don't block main success
+          setTimeout(() => {
+            const popup = document.querySelector('.popup-message');
+            if (popup) {
+              popup.querySelector('.popup-text').innerHTML += '<br><small style="color: #ff9800;">⚠️ Slack notification blocked by browser</small>';
+            }
+          }, 500);
+        }
+      }).catch(error => {
+        console.log('ℹ️ Slack notification error:', error);
+      });
+
+      // Reset form
+      form.reset();
+
+      // Reset button
+      formBtn.style.opacity = '1';
+      formBtn.style.cursor = 'pointer';
+      formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
+      formBtn.setAttribute('disabled', '');
+    })
+    .catch(error => {
+      console.error('Form submission error:', error);
+
+      // Show error popup
+      showPopupMessage('Failed to send message. Please try again or contact me directly.', false);
+
+      // Reset button
+      formBtn.style.opacity = '1';
+      formBtn.style.cursor = 'pointer';
+      formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
     });
-
-    // Let the form submit naturally to Netlify
-    // Netlify will redirect to thank-you page
   });
 }
 
@@ -300,7 +402,38 @@ window.addEventListener('hashchange', function() {
   activatePage(targetPage);
 });
 
+// Sticky navigation functionality
+function handleStickyNavigation() {
+  const navbar = document.querySelector('.navbar');
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateNavbar() {
+    const scrollY = window.scrollY;
+
+    // Add sticky class when scrolling down past 100px
+    if (scrollY > 100) {
+      navbar.classList.add('sticky');
+    } else {
+      navbar.classList.remove('sticky');
+    }
+
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestTick, { passive: true });
+}
+
 // Initialize page when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   initializePage();
+  handleStickyNavigation();
 });
