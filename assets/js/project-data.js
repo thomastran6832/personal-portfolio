@@ -131,16 +131,21 @@ function generateFilterButtons(categories) {
 
     // Add category buttons
     categories.forEach(category => {
+        // Format category name for display (capitalize each word and replace hyphens)
+        const displayName = category.split('-').map(word =>
+            word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(' ');
+
         // Create filter button for large screen
         const filterItem = document.createElement('li');
         filterItem.className = 'filter-item';
-        filterItem.innerHTML = `<button data-filter-btn>${category.charAt(0).toUpperCase() + category.slice(1)}</button>`;
+        filterItem.innerHTML = `<button data-filter-btn data-category="${category}">${displayName}</button>`;
         filterList.appendChild(filterItem);
 
         // Create select option for mobile
         const selectItem = document.createElement('li');
         selectItem.className = 'select-item';
-        selectItem.innerHTML = `<button data-select-item>${category.charAt(0).toUpperCase() + category.slice(1)}</button>`;
+        selectItem.innerHTML = `<button data-select-item data-category="${category}">${displayName}</button>`;
         selectList.appendChild(selectItem);
     });
 }
@@ -149,7 +154,7 @@ function generateFilterButtons(categories) {
 function initializeFilters() {
     const select = document.querySelector("[data-select]");
     const selectItems = document.querySelectorAll("[data-select-item]");
-    const selectValue = document.querySelector("[data-selecct-value]");
+    const selectValue = document.querySelector("[data-select-value]");
     const filterBtn = document.querySelectorAll("[data-filter-btn]");
     const filterItems = document.querySelectorAll("[data-filter-item]");
 
@@ -176,7 +181,7 @@ function initializeFilters() {
     // Add event to all select items
     selectItems.forEach(item => {
         item.addEventListener("click", function () {
-            let selectedValue = this.innerText.toLowerCase();
+            let selectedValue = this.dataset.category || this.innerText.toLowerCase();
             if (selectValue) selectValue.innerText = this.innerText;
             if (select) select.classList.remove("active");
             filterFunc(selectedValue);
@@ -188,7 +193,7 @@ function initializeFilters() {
 
     filterBtn.forEach(btn => {
         btn.addEventListener("click", function () {
-            let selectedValue = this.innerText.toLowerCase();
+            let selectedValue = this.dataset.category || this.innerText.toLowerCase();
             if (selectValue) selectValue.innerText = this.innerText;
             filterFunc(selectedValue);
 

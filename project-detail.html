@@ -5,7 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Project Detail - Thomas Tran</title>
+  <title>Project Details - Thomas Tran | DevOps Engineer Portfolio</title>
+  <meta name="description" content="Detailed view of Thomas Tran's DevOps and Cloud Engineering projects. Explore innovative solutions in infrastructure automation and cloud technologies.">
+  <meta property="og:title" content="Project Details - Thomas Tran Portfolio">
+  <meta property="og:description" content="Detailed project showcase from Thomas Tran's DevOps and Cloud Engineering portfolio">
+  <meta property="og:type" content="website">
 
   <!--
     - favicon
@@ -25,7 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="project-detail-page">
 
   <!--
     - #MAIN
@@ -34,122 +38,32 @@
   <main>
 
     <!--
-      - #SIDEBAR
+      - #NAVBAR - Positioned outside main-content for proper fixed positioning
     -->
 
-    <aside class="sidebar" data-sidebar>
+    <nav class="navbar">
 
-      <div class="sidebar-info">
+      <ul class="navbar-list">
 
-        <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.png" alt="Thomas Tran" width="80">
-        </figure>
+        <li class="navbar-item">
+          <a href="index.html" class="navbar-link">About</a>
+        </li>
 
-        <div class="info-content">
-          <h1 class="name" title="Thomas Tran">Thomas Tran</h1>
+        <li class="navbar-item">
+          <a href="index.html#resume" class="navbar-link">Resume</a>
+        </li>
 
-          <p class="title">Devops Engineer</p>
-        </div>
+        <li class="navbar-item">
+          <a href="index.html#project" class="navbar-link active">Project</a>
+        </li>
 
-        <button class="info_more-btn" data-sidebar-btn>
-          <span>Show Contacts</span>
+        <li class="navbar-item">
+          <a href="index.html#contact" class="navbar-link">Contact</a>
+        </li>
 
-          <ion-icon name="chevron-down"></ion-icon>
-        </button>
+      </ul>
 
-      </div>
-
-      <div class="sidebar-info_more">
-
-        <div class="separator"></div>
-
-        <ul class="contacts-list">
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="mail-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Email</p>
-
-              <a href="mailto:thomas.tran6832@gmail.com" class="contact-link">thomas.tran6832@gmail.com</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="phone-portrait-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Phone</p>
-
-              <a href="tel:+84907396832" class="contact-link">+84 907 396 832</a>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1982-06-23">June 23, 1992</time>
-            </div>
-
-          </li>
-
-          <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="location-outline"></ion-icon>
-            </div>
-
-            <div class="contact-info">
-              <p class="contact-title">Location</p>
-
-              <address>Ho Chi Minh City, Vietnam</address>
-            </div>
-
-          </li>
-
-        </ul>
-
-        <div class="separator"></div>
-
-        <ul class="social-list">
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </aside>
+    </nav>
 
     <!--
       - #main-content
@@ -158,78 +72,50 @@
     <div class="main-content">
 
       <!--
-        - #NAVBAR
-      -->
-
-      <nav class="navbar">
-
-        <ul class="navbar-list">
-
-          <li class="navbar-item">
-            <a href="index.html" class="navbar-link">About</a>
-          </li>
-
-          <li class="navbar-item">
-            <a href="index.html#resume" class="navbar-link">Resume</a>
-          </li>
-
-          <li class="navbar-item">
-            <a href="index.html#project" class="navbar-link active">Project</a>
-          </li>
-
-          <li class="navbar-item">
-            <a href="index.html#contact" class="navbar-link">Contact</a>
-          </li>
-
-        </ul>
-
-      </nav>
-
-      <!--
         - #PROJECT DETAIL
       -->
 
       <article class="about active" data-page="project-detail">
 
         <header>
-          <div class="project-header" style="background: linear-gradient(135deg, #1e1e1f 0%, #2a2a2b 100%); border: 3px solid #ffdb70; border-radius: 25px; padding: 50px 30px; text-align: center; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.8); margin-bottom: 40px;">
-            <a href="index.html#project" class="back-btn" style="position: absolute; top: 20px; left: 20px; background: linear-gradient(135deg, #ffdb70 0%, #ffc107 100%); color: #0c0c0c; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(255,219,112,0.5); transition: all 0.3s ease; display: flex; align-items: center; gap: 10px;">
-              <ion-icon name="arrow-back-outline" style="font-size: 20px;"></ion-icon>
-              <span>Back to Project</span>
-            </a>
-            <h2 class="h2 article-title" id="project-title" style="color: #ffffff; font-size: 2.5rem; margin: 20px 0 10px 0; text-transform: uppercase; letter-spacing: 2px;">Loading...</h2>
-            <p class="project-subtitle" id="project-category" style="color: #ffc107; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px;">Loading...</p>
+          <a href="index.html#project" class="back-btn" style="position: absolute; top: 80px; left: 20px; z-index: 1001; background: rgba(255, 219, 112, 0.9); color: var(--jet); padding: 10px 15px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.9rem; border: 1px solid rgba(255, 219, 112, 0.8); transition: all 0.1s ease; display: flex; align-items: center; gap: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;" onmouseover="this.style.background='rgba(255, 219, 112, 1)'; this.style.transform='translateX(-3px)'" onmouseout="this.style.background='rgba(255, 219, 112, 0.9)'; this.style.transform='translateX(0)'">
+            <ion-icon name="arrow-back-outline" style="font-size: 18px;"></ion-icon>
+            <span>Back</span>
+          </a>
+          <div class="project-header about-intro content-card" style="text-align: center; margin-bottom: 40px; padding: 40px 30px;">
+            <h3 class="h3" style="margin-bottom: 20px;">Project Details</h3>
+            <h1 id="project-title" style="color: #ffffff; font-size: 2.2rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 0 15px rgba(255,219,112,0.3);">Loading...</h1>
+            <p id="project-category" style="color: rgba(255, 219, 112, 0.9); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500;">Loading...</p>
           </div>
         </header>
 
-        <section class="project-content" style="background: linear-gradient(135deg, #2a2a2b 0%, #1e1e1f 100%); border-radius: 30px; padding: 50px; margin: 20px; border: 2px solid #444; position: relative; overflow: hidden;">
+        <section class="project-content content-card" style="padding: 30px; margin: 20px 0;">
 
-          <!-- Decorative top border -->
-          <div style="position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #ffdb70, #ffc107, #ffdb70);"></div>
-
-          <div class="project-image" style="text-align: center; margin: 30px 0 60px 0; position: relative;">
-            <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: calc(100% + 30px); height: calc(100% + 30px); background: linear-gradient(45deg, #ffdb70, #ffc107); border-radius: 25px; opacity: 0.2; z-index: -1;"></div>
-            <img id="project-image" src="" alt="" loading="lazy" style="width: 100%; max-width: 800px; height: auto; border-radius: 20px; border: 4px solid #ffdb70; box-shadow: 0 25px 60px rgba(0,0,0,0.8), 0 0 50px rgba(255,219,112,0.3); transition: all 0.4s ease;">
+          <div class="project-image about-expertise content-card" style="text-align: center; margin: 30px 0; position: relative;">
+            <h3 class="h3">Project Preview</h3>
+            <div style="position: relative; margin-top: 20px;">
+              <img id="project-image" src="" alt="" loading="lazy" style="width: 100%; max-width: 700px; height: auto; border-radius: 15px; border: 2px solid rgba(255, 219, 112, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,219,112,0.2); transition: all 0.4s ease;" onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(255,219,112,0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.6), 0 0 30px rgba(255,219,112,0.2)'">
+            </div>
           </div>
 
           <div class="project-info" style="display: grid; gap: 40px; max-width: 900px; margin: 0 auto;">
 
-            <div class="project-section" style="background: linear-gradient(135deg, #1e1e1f 0%, #2a2a2b 100%); border: 2px solid #ffdb70; border-radius: 20px; padding: 35px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); transition: all 0.3s ease;">
-              <h2 style="color: #ffffff; font-size: 1.8rem; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 2px; border-bottom: 3px solid #ffdb70; padding-bottom: 10px; display: inline-block;">Project Overview</h2>
-              <p id="project-description" style="color: #d6d6d6; font-size: 1.1rem; line-height: 1.8; margin-top: 20px;">Loading project details...</p>
+            <div class="project-section about-passion content-card">
+              <h3 class="h3">Project Overview</h3>
+              <p id="project-description">Loading project details...</p>
             </div>
 
-            <div class="project-section" style="background: linear-gradient(135deg, #1e1e1f 0%, #2a2a2b 100%); border: 2px solid #ffdb70; border-radius: 20px; padding: 35px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); transition: all 0.3s ease;">
-              <h2 style="color: #ffffff; font-size: 1.8rem; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 2px; border-bottom: 3px solid #ffdb70; padding-bottom: 10px; display: inline-block;">Technologies Used</h2>
-              <div class="tech-list" id="project-technologies" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 25px; justify-content: center;">
-                <span class="tech-item" style="background: #0c0c0c; color: #ffdb70; padding: 12px 20px; border-radius: 25px; border: 2px solid #ffdb70; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; display: inline-block;">Loading...</span>
+            <div class="project-section about-goals content-card">
+              <h3 class="h3">Technologies Used</h3>
+              <div class="tech-list" id="project-technologies" style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; justify-content: flex-start;">
+                <span class="tech-item skill-tag">Loading...</span>
               </div>
             </div>
 
-            <div class="project-section" style="background: linear-gradient(135deg, #1e1e1f 0%, #2a2a2b 100%); border: 2px solid #ffdb70; border-radius: 20px; padding: 35px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.6); transition: all 0.3s ease;">
-              <h2 style="color: #ffffff; font-size: 1.8rem; margin: 0 0 20px 0; text-transform: uppercase; letter-spacing: 2px; border-bottom: 3px solid #ffdb70; padding-bottom: 10px; display: inline-block;">Key Features</h2>
-              <ul class="feature-list" id="project-features" style="list-style: none; display: grid; gap: 15px; margin-top: 25px;">
-                <li style="color: #ffffff; font-size: 1.1rem; padding: 20px 25px; background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border-radius: 15px; border-left: 4px solid #ffdb70; position: relative; transition: all 0.3s ease;">Loading features...</li>
+            <div class="project-section service-item">
+              <h3 class="h3">Key Features</h3>
+              <ul class="feature-list" id="project-features" style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px;">
+                <li class="feature-item" style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; padding: 10px 15px; background: rgba(46, 46, 51, 0.4); border-radius: 8px; border-left: 3px solid rgba(255, 219, 112, 0.5); position: relative; transition: all 0.1s ease; backdrop-filter: blur(10px); line-height: 1.4;" onmouseover="this.style.background='rgba(255, 219, 112, 0.1)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.8)'" onmouseout="this.style.background='rgba(46, 46, 51, 0.4)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.5)'">Loading features...</li>
               </ul>
             </div>
 
@@ -257,6 +143,7 @@
     - custom js link
   -->
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/animations.js"></script>
   <script src="./assets/js/project-detail.js"></script>
 
   <!--

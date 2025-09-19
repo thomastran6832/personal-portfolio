@@ -94,6 +94,7 @@ function populateProjectDetail(project) {
     const loadingState = document.getElementById('loading-state');
     if (loadingState) loadingState.style.display = 'none';
 
+
     // Update page title
     document.title = `${project.title} - Thomas Tran`;
 
@@ -115,11 +116,11 @@ function populateProjectDetail(project) {
 
     // Populate features
     const featuresContainer = document.getElementById('project-features');
-    featuresContainer.style.cssText = 'list-style: none; display: grid; gap: 15px; margin-top: 25px;';
+    featuresContainer.style.cssText = 'list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-top: 15px; width: 100%;';
 
     if (project.features && project.features.length > 0) {
         featuresContainer.innerHTML = project.features.map((feature) =>
-            `<li style="color: #ffffff; font-size: 1.1rem; padding: 20px 25px; background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border-radius: 15px; border-left: 4px solid #ffdb70; position: relative; transition: all 0.3s ease; min-height: 60px; display: flex; align-items: center; cursor: pointer;" onmouseover="this.style.transform='translateX(10px)'; this.style.borderColor='#ffdb70'; this.style.boxShadow='0 10px 30px rgba(255,219,112,0.2)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+            `<li style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; padding: 10px 15px; background: rgba(46, 46, 51, 0.4); border-radius: 8px; border-left: 3px solid rgba(255, 219, 112, 0.5); position: relative; transition: all 0.1s ease; backdrop-filter: blur(10px); line-height: 1.4;" onmouseover="this.style.background='rgba(255, 219, 112, 0.1)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.8)'" onmouseout="this.style.background='rgba(46, 46, 51, 0.4)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.5)'">
                 ${feature}
             </li>`
         ).join('');
@@ -127,7 +128,7 @@ function populateProjectDetail(project) {
         // Generate default features based on project type
         const defaultFeatures = generateDefaultFeatures(project);
         featuresContainer.innerHTML = defaultFeatures.map((feature) =>
-            `<li style="color: #ffffff; font-size: 1.1rem; padding: 20px 25px; background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border-radius: 15px; border-left: 4px solid #ffdb70; position: relative; transition: all 0.3s ease; min-height: 60px; display: flex; align-items: center; cursor: pointer;" onmouseover="this.style.transform='translateX(10px)'; this.style.borderColor='#ffdb70'; this.style.boxShadow='0 10px 30px rgba(255,219,112,0.2)'" onmouseout="this.style.transform='translateX(0)'; this.style.boxShadow='none'">
+            `<li style="color: rgba(255, 255, 255, 0.9); font-size: 0.9rem; padding: 10px 15px; background: rgba(46, 46, 51, 0.4); border-radius: 8px; border-left: 3px solid rgba(255, 219, 112, 0.5); position: relative; transition: all 0.1s ease; backdrop-filter: blur(10px); line-height: 1.4;" onmouseover="this.style.background='rgba(255, 219, 112, 0.1)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.8)'" onmouseout="this.style.background='rgba(46, 46, 51, 0.4)'; this.style.borderLeftColor='rgba(255, 219, 112, 0.5)'">
                 ${feature}
             </li>`
         ).join('');

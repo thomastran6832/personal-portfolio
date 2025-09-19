@@ -106,8 +106,8 @@
    * transition
    */
 
-  --transition-1: 0.25s ease;
-  --transition-2: 0.5s ease-in-out;
+  --transition-1: 0.1s ease;
+  --transition-2: 0.15s ease;
 
 }
 
@@ -215,7 +215,7 @@ article { display: none; }
 
 article.active {
   display: block;
-  animation: fade 0.5s ease backwards;
+  animation: fade 0.2s ease backwards;
 }
 
 @keyframes fade {
@@ -574,7 +574,7 @@ main {
 .navbar {
   position: fixed;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   background: hsla(240, 1%, 17%, 0.75);
   backdrop-filter: blur(10px);
@@ -589,8 +589,9 @@ main {
   position: fixed;
   top: 20px;
   bottom: auto;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 20px;
+  left: auto;
+  transform: none;
   width: auto;
   max-width: 500px;
   border-radius: 50px;
@@ -606,7 +607,7 @@ main {
   justify-content: center;
   align-items: center;
   padding: 0 10px;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .navbar.sticky .navbar-list {
@@ -1028,6 +1029,897 @@ main {
 
 
 /*-----------------------------------*\
+  #ANIMATIONS
+\*-----------------------------------*/
+
+/* Option 4 Glass Morphism Style for ALL About Cards */
+.about-intro, .about-expertise, .about-passion, .about-goals {
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 25px !important;
+  margin-bottom: 20px !important;
+  background: rgba(46, 46, 51, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.about-intro:hover, .about-expertise:hover, .about-passion:hover, .about-goals:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  background: rgba(255, 219, 112, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.about-intro h3, .about-expertise h3, .about-passion h3, .about-goals h3 {
+  color: var(--white-2) !important;
+  font-size: var(--fs-3) !important;
+  font-weight: var(--fw-500) !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid rgba(255, 219, 112, 0.5) !important;
+  position: relative !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.about-intro p, .about-expertise p, .about-passion p, .about-goals p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: var(--fs-6) !important;
+  font-weight: var(--fw-300) !important;
+  line-height: 1.6 !important;
+  flex: 1 !important;
+  margin: 0 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Apply Glass Morphism to ALL option cards */
+.content-card[data-page="about"].option-1,
+.content-card[data-page="about"].option-2,
+.content-card[data-page="about"].option-3,
+.content-card[data-page="about"].option-4 {
+  background: rgba(46, 46, 51, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  transform: none !important;
+}
+
+.content-card[data-page="about"].option-1:hover,
+.content-card[data-page="about"].option-2:hover,
+.content-card[data-page="about"].option-3:hover,
+.content-card[data-page="about"].option-4:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  background: rgba(255, 219, 112, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Remove all other option-specific effects */
+.content-card[data-page="about"].option-1::before,
+.content-card[data-page="about"].option-1:hover::before {
+  display: none !important;
+}
+
+.content-card[data-page="about"].option-2:hover .h3 {
+  color: var(--white-2) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.content-card[data-page="about"].option-3 .h3::after,
+.content-card[data-page="about"].option-3:hover .h3::after {
+  display: none !important;
+}
+
+/* Glass Morphism for Services Section (What I'm Doing) */
+.service-item {
+  min-height: 200px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  padding: 25px !important;
+  margin-bottom: 20px !important;
+  background: rgba(46, 46, 51, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.service-item:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  background: rgba(255, 219, 112, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.service-item .service-icon-box {
+  margin-right: 20px !important;
+  flex-shrink: 0 !important;
+}
+
+.service-item .service-content-box {
+  flex: 1 !important;
+}
+
+.service-item .service-item-title {
+  color: var(--white-2) !important;
+  font-size: var(--fs-4) !important;
+  font-weight: var(--fw-500) !important;
+  margin-bottom: 10px !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.service-item .service-item-text {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: var(--fs-6) !important;
+  font-weight: var(--fw-300) !important;
+  line-height: 1.6 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Horizontal Scrolling Layout for Client Feedback (Testimonials) */
+.testimonials-list {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 20px !important;
+  margin: 0 -15px !important;
+  padding: 25px 15px !important;
+  padding-bottom: 35px !important;
+  overflow-x: auto !important;
+  scroll-behavior: smooth !important;
+  overscroll-behavior-inline: contain !important;
+}
+
+.testimonials-item {
+  flex-shrink: 0 !important;
+  width: 400px !important;
+  min-height: 200px !important;
+  margin-bottom: 0 !important;
+}
+
+.testimonials-item .content-card {
+  min-height: 180px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 25px !important;
+  background: rgba(46, 46, 51, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.testimonials-item .content-card:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  background: rgba(255, 219, 112, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.testimonials-item .testimonials-item-title {
+  color: var(--white-2) !important;
+  font-size: var(--fs-4) !important;
+  font-weight: var(--fw-500) !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid rgba(255, 219, 112, 0.5) !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.testimonials-item .testimonials-text {
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.testimonials-item .testimonials-text p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  line-height: 1.6 !important;
+  font-size: var(--fs-6) !important;
+  font-weight: var(--fw-300) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Enhanced Sticky Liquid Glass Navigation Effect */
+.navbar {
+  position: sticky !important;
+  top: 20px !important;
+  z-index: 1000 !important;
+  background: rgba(46, 46, 51, 0.6) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 30px !important;
+  padding: 10px !important;
+  margin: 20px 0 !important;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    0 2px 20px rgba(255, 219, 112, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  overflow: hidden !important;
+}
+
+@keyframes navbarFloat {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg);
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.4),
+      0 2px 20px rgba(255, 219, 112, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: translateY(-2px) rotateX(1deg);
+    box-shadow:
+      0 15px 50px rgba(0, 0, 0, 0.5),
+      0 5px 30px rgba(255, 219, 112, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+.navbar::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -2px !important;
+  left: -2px !important;
+  right: -2px !important;
+  bottom: -2px !important;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 219, 112, 0.1) 0%,
+    rgba(255, 255, 255, 0.1) 25%,
+    rgba(255, 219, 112, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 219, 112, 0.1) 100%
+  ) !important;
+  border-radius: 32px !important;
+  z-index: -1 !important;
+}
+
+@keyframes borderFlow {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.02); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+.navbar-list {
+  position: relative !important;
+  display: flex !important;
+  justify-content: space-around !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.navbar-item {
+  flex: 1 !important;
+  position: relative !important;
+}
+
+.navbar-link {
+  position: relative !important;
+  display: block !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: var(--fs-6) !important;
+  font-weight: var(--fw-500) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  padding: 12px 20px !important;
+  border-radius: 18px !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.15s ease !important;
+  text-align: center !important;
+  overflow: hidden !important;
+  z-index: 1 !important;
+}
+
+.navbar-link::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -3px !important;
+  left: -200% !important;
+  width: 300% !important;
+  height: calc(100% + 6px) !important;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 10%,
+    rgba(255, 219, 112, 0.08) 25%,
+    rgba(255, 255, 255, 0.15) 40%,
+    rgba(255, 219, 112, 0.25) 50%,
+    rgba(255, 255, 255, 0.35) 60%,
+    rgba(255, 219, 112, 0.25) 70%,
+    rgba(255, 255, 255, 0.15) 85%,
+    rgba(255, 219, 112, 0.08) 95%,
+    transparent 100%
+  ) !important;
+  border-radius: 22px !important;
+  transform: skewX(-25deg) !important;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  z-index: 2 !important;
+  opacity: 0 !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  box-shadow:
+    0 0 10px rgba(255, 219, 112, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Background blur layer for liquid */
+.navbar-link::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -1px !important;
+  left: -200% !important;
+  width: 300% !important;
+  height: calc(100% + 2px) !important;
+  background: rgba(46, 46, 51, 0.3) !important;
+  border-radius: 20px !important;
+  transform: skewX(-25deg) !important;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  z-index: -1 !important;
+  opacity: 0 !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.navbar-link:hover::before {
+  left: -100% !important;
+  opacity: 1 !important;
+}
+
+.navbar-link:hover::after {
+  left: -100% !important;
+  opacity: 1 !important;
+}
+
+.navbar-link:hover {
+  color: rgba(255, 255, 255, 1) !important;
+  background: rgba(255, 219, 112, 0.04) !important;
+  backdrop-filter: blur(50px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(50px) saturate(180%) !important;
+  border: 1px solid rgba(255, 219, 112, 0.4) !important;
+  box-shadow:
+    0 6px 25px rgba(255, 219, 112, 0.15),
+    0 0 40px rgba(255, 219, 112, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(255, 219, 112, 0.1) !important;
+  transform: translateY(-3px) scale(1.06) !important;
+}
+
+.navbar-link.active {
+  color: var(--white-1) !important;
+  background: rgba(255, 219, 112, 0.2) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.5) !important;
+  box-shadow:
+    0 6px 25px rgba(255, 219, 112, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+  text-shadow: 0 0 15px rgba(255, 219, 112, 0.7) !important;
+  transform: translateY(-3px) scale(1.08) !important;
+}
+
+@keyframes textRevealLiquid {
+  0% {
+    left: -200%;
+    transform: skewX(-25deg) scale(0.8) rotateX(0deg);
+    opacity: 0;
+    filter: hue-rotate(0deg) brightness(1) blur(1px);
+  }
+  20% {
+    opacity: 0.3;
+    transform: skewX(-15deg) scale(0.9) rotateX(3deg);
+    filter: hue-rotate(15deg) brightness(1.1) blur(0.5px);
+  }
+  50% {
+    left: -100%;
+    opacity: 1;
+    transform: skewX(0deg) scale(1.1) rotateX(0deg);
+    filter: hue-rotate(45deg) brightness(1.3) blur(0px);
+  }
+  80% {
+    opacity: 0.7;
+    transform: skewX(15deg) scale(0.9) rotateX(-3deg);
+    filter: hue-rotate(15deg) brightness(1.1) blur(0.5px);
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    transform: skewX(-25deg) scale(0.8) rotateX(0deg);
+    filter: hue-rotate(0deg) brightness(1) blur(1px);
+  }
+}
+
+@keyframes blurBackdrop {
+  0% {
+    left: -200%;
+    opacity: 0;
+    transform: skewX(-25deg) scale(1);
+    backdrop-filter: blur(8px);
+  }
+  30% {
+    opacity: 0.6;
+    transform: skewX(-15deg) scale(1.05);
+    backdrop-filter: blur(12px);
+  }
+  50% {
+    left: -100%;
+    opacity: 0.8;
+    transform: skewX(0deg) scale(1.1);
+    backdrop-filter: blur(15px);
+  }
+  70% {
+    opacity: 0.4;
+    transform: skewX(15deg) scale(1.05);
+    backdrop-filter: blur(10px);
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+    transform: skewX(-25deg) scale(1);
+    backdrop-filter: blur(5px);
+  }
+}
+
+/* Enhanced text visibility during liquid effect */
+.navbar-link {
+  text-shadow:
+    0 0 10px rgba(0, 0, 0, 0.8),
+    0 1px 3px rgba(0, 0, 0, 0.5) !important;
+}
+
+.navbar-link:hover {
+  text-shadow:
+    0 0 15px rgba(255, 219, 112, 0.8),
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Text enhancement during liquid animation */
+.navbar-link:hover span {
+  position: relative !important;
+  z-index: 10 !important;
+  mix-blend-mode: normal !important;
+  filter: contrast(1.2) brightness(1.1) !important;
+}
+
+/* Project Detail Page Consistency */
+.project-section {
+  min-height: 180px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  padding: 25px !important;
+  margin-bottom: 20px !important;
+  background: rgba(46, 46, 51, 0.8) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 20px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.project-section:hover {
+  transform: translateY(-5px) scale(1.02) !important;
+  background: rgba(255, 219, 112, 0.1) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.project-section h2 {
+  color: var(--white-2) !important;
+  font-size: var(--fs-3) !important;
+  font-weight: var(--fw-500) !important;
+  margin-bottom: 15px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid rgba(255, 219, 112, 0.5) !important;
+  position: relative !important;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1) !important;
+}
+
+.project-section p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: var(--fs-6) !important;
+  font-weight: var(--fw-300) !important;
+  line-height: 1.6 !important;
+  flex: 1 !important;
+  margin: 0 !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Tech Items in Project Detail */
+.tech-item {
+  background: linear-gradient(135deg, #2a2a2b, #1e1e1f) !important;
+  border: 2px solid #444 !important;
+  border-radius: 15px !important;
+  padding: 10px 15px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  color: #ffdb70 !important;
+  font-weight: 600 !important;
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+}
+
+.tech-item:hover {
+  border-color: #ffdb70 !important;
+  transform: translateY(-5px) scale(1.02) !important;
+  box-shadow: 0 8px 25px rgba(255, 219, 112, 0.3) !important;
+}
+
+/* Enhanced Title/Job Styling */
+.info-content {
+  text-align: center !important;
+  padding: 20px 15px !important;
+  background: rgba(46, 46, 51, 0.6) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border-radius: 20px !important;
+  margin: 15px 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+}
+
+.info-content:hover {
+  background: rgba(255, 219, 112, 0.1) !important;
+  border: 1px solid rgba(255, 219, 112, 0.3) !important;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 219, 112, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-3px) !important;
+}
+
+.name {
+  color: var(--white-1) !important;
+  font-size: 1.8rem !important;
+  font-weight: var(--fw-600) !important;
+  margin-bottom: 12px !important;
+  text-shadow:
+    0 0 15px rgba(255, 219, 112, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.5) !important;
+  letter-spacing: 1px !important;
+  position: relative !important;
+}
+
+.name::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -5px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 60px !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 219, 112, 0.8), transparent) !important;
+  border-radius: 2px !important;
+}
+
+.title {
+  color: var(--vegas-gold) !important;
+  background: var(--onyx) !important;
+  font-size: var(--fs-8) !important;
+  font-weight: var(--fw-400) !important;
+  width: max-content !important;
+  padding: 5px 15px !important;
+  border-radius: 12px !important;
+  margin: 0 auto !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 219, 112, 0.2) !important;
+  transition: all 0.1s ease !important;
+}
+
+.title:hover {
+  background: var(--vegas-gold) !important;
+  color: var(--jet) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(255, 219, 112, 0.3) !important;
+}
+
+/* Project Detail Page - Full Width Layout */
+.project-detail-page .main-content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 20px !important;
+}
+
+.project-detail-page main {
+  display: block !important;
+}
+
+/* Force 2-column layout for features */
+#project-features {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 8px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+#project-features li {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+/* Project Detail Page - Clean navbar in right corner */
+.project-detail-page .navbar {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  bottom: auto !important;
+  left: auto !important;
+  width: auto !important;
+  max-width: 350px !important;
+  border-radius: 20px !important;
+  background: rgba(46, 46, 51, 0.9) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  border: 1px solid rgba(255, 219, 112, 0.2) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  z-index: 1000 !important;
+}
+
+.project-detail-page .navbar-list {
+  padding: 8px 10px !important;
+  gap: 5px !important;
+  justify-content: flex-start !important;
+}
+
+.project-detail-page .navbar-link {
+  padding: 8px 15px !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  border-radius: 12px !important;
+  transition: all 0.1s ease !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.project-detail-page .navbar-link:hover {
+  background: rgba(255, 219, 112, 0.2) !important;
+  color: var(--vegas-gold) !important;
+}
+
+.project-detail-page .navbar-link.active {
+  background: var(--vegas-gold) !important;
+  color: var(--jet) !important;
+}
+
+/* Disable navbar sticky behavior on project-detail page */
+.project-detail-page .navbar.sticky {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  transform: none !important;
+  width: auto !important;
+  max-width: 350px !important;
+  border-radius: 20px !important;
+}
+
+/* Enhanced Avatar Styling */
+.avatar-box {
+  background: rgba(46, 46, 51, 0.4) !important;
+  border: 2px solid rgba(255, 219, 112, 0.3) !important;
+  border-radius: 15px !important;
+  padding: 8px !important;
+  margin: 0 auto 20px auto !important;
+  width: 96px !important;
+  height: 96px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 219, 112, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.15s ease !important;
+  position: relative !important;
+}
+
+.avatar-box::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -3px !important;
+  left: -3px !important;
+  right: -3px !important;
+  bottom: -3px !important;
+  border-radius: 15px !important;
+  background: linear-gradient(45deg, rgba(255, 219, 112, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 219, 112, 0.3)) !important;
+  z-index: -1 !important;
+  opacity: 0 !important;
+  transition: opacity 0.4s ease !important;
+}
+
+.avatar-box:hover {
+  transform: translateY(-5px) scale(1.05) !important;
+  border-color: rgba(255, 219, 112, 0.6) !important;
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(255, 219, 112, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+.avatar-box:hover::before {
+  opacity: 1 !important;
+}
+
+.avatar-box img {
+  border-radius: 12px !important;
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  transition: all 0.1s ease !important;
+}
+
+/* Progressive Reveal Animation - Faster and More Responsive */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal-element.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-element.reveal-left {
+  transform: translateX(-20px);
+}
+
+.reveal-element.reveal-left.revealed {
+  transform: translateX(0);
+}
+
+.reveal-element.reveal-right {
+  transform: translateX(20px);
+}
+
+.reveal-element.reveal-right.revealed {
+  transform: translateX(0);
+}
+
+.reveal-element.reveal-scale {
+  transform: scale(0.9);
+}
+
+.reveal-element.reveal-scale.revealed {
+  transform: scale(1);
+}
+
+/* Faster Staggered reveal delays */
+.reveal-delay-1 { transition-delay: 0.05s; }
+.reveal-delay-2 { transition-delay: 0.1s; }
+.reveal-delay-3 { transition-delay: 0.15s; }
+.reveal-delay-4 { transition-delay: 0.2s; }
+.reveal-delay-5 { transition-delay: 0.25s; }
+.reveal-delay-6 { transition-delay: 0.3s; }
+
+/* Client Logo Animations */
+.client-logo-animated {
+  filter: grayscale(100%);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: scale(1);
+}
+
+.client-logo-animated:hover {
+  filter: grayscale(0%);
+  transform: scale(1.1);
+  box-shadow: 0 8px 25px rgba(255, 219, 112, 0.3);
+}
+
+.floating-logo {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 219, 112, 0.3);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 219, 112, 0.6);
+    transform: scale(1.02);
+  }
+}
+
+/* Ensure smooth transitions for all pages */
+.main-content article {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.main-content article[data-page] {
+  opacity: 1;
+}
+
+/*-----------------------------------*\
   #PORTFOLIO
 \*-----------------------------------*/
 
@@ -1095,7 +1987,10 @@ main {
   margin-bottom: 10px;
 }
 
-.project-item { display: none; }
+.project-item {
+  display: block !important;
+  opacity: 1 !important;
+}
 
 .project-item.active {
   display: block;
@@ -2101,7 +2996,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* GIF hover effects for projects */
   .project-item .gif-image {
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
   }
 
   .project-item:hover .gif-image {
@@ -2137,7 +3032,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* Profile avatar GIF support */
   .avatar-box .gif-image {
-    border-radius: 50%;
+    border-radius: 12px;
     object-fit: cover;
     width: 100%;
     height: 100%;
@@ -2171,7 +3066,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 16px;
     padding: 0;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     cursor: pointer;
   }
 
@@ -2247,7 +3142,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 8px;
     font-size: var(--fs-6);
     font-weight: var(--fw-500);
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
   }
 
   .project-link:hover {
@@ -2320,7 +3215,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
   }
 
   .modal-close:hover {
@@ -2388,7 +3283,7 @@ textarea.form-input::-webkit-resizer { display: none; }
     border-radius: 10px;
     font-size: var(--fs-6);
     font-weight: var(--fw-500);
-    transition: all 0.3s ease;
+    transition: all 0.1s ease;
     flex: 1;
     justify-content: center;
     min-width: 140px;
@@ -2486,7 +3381,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   padding: 18px 30px;
   background: linear-gradient(135deg, var(--orange-yellow-crayola) 0%, var(--vegas-gold) 100%);
   border-radius: 50px;
-  transition: all 0.4s ease;
+  transition: all 0.1s ease;
   border: none;
   position: absolute;
   top: 30px;
@@ -2504,7 +3399,7 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 .back-btn ion-icon {
   font-size: 24px;
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
 }
 
 .back-btn:hover ion-icon {
@@ -2725,7 +3620,7 @@ textarea.form-input::-webkit-resizer { display: none; }
   background: linear-gradient(135deg, var(--eerie-black-1), var(--eerie-black-2));
   border-radius: 20px;
   border: 2px solid var(--jet);
-  transition: all 0.3s ease;
+  transition: all 0.1s ease;
   min-height: 80px;
   display: flex;
   align-items: center;
@@ -2841,7 +3736,7 @@ article[data-page="project-detail"] .back-btn {
   padding: 18px 30px !important;
   background: linear-gradient(135deg, var(--orange-yellow-crayola) 0%, var(--vegas-gold) 100%) !important;
   border-radius: 50px !important;
-  transition: all 0.4s ease !important;
+  transition: all 0.1s ease !important;
   border: none !important;
   position: absolute !important;
   top: 30px !important;
