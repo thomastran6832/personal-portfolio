@@ -1919,23 +1919,62 @@ main {
   opacity: 1;
 }
 
-/* ===== MOBILE OPTIMIZATION ===== */
+/* ===== MOBILE OPTIMIZATION - MODERN & ENGAGING ===== */
 
 /* Mobile-first responsive breakpoints */
 @media (max-width: 768px) {
 
+  /* Add mobile-specific background animations */
+  body {
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 35%, #16213e 70%, #0a0a0f 100%) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 15s ease infinite !important;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Add floating particles for mobile */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 219, 112, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 219, 112, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: floatingParticles 20s ease-in-out infinite;
+  }
+
+  @keyframes floatingParticles {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-10px) rotate(90deg); }
+    50% { transform: translateY(5px) rotate(180deg); }
+    75% { transform: translateY(-5px) rotate(270deg); }
+  }
+
   /* Main layout adjustments */
   main {
-    margin-bottom: 60px !important;
+    margin-bottom: 80px !important;
     padding: 10px !important;
+    position: relative;
   }
 
   .main-content {
-    padding: 15px !important;
+    padding: 20px 15px !important;
     margin-left: 0 !important;
+    position: relative;
+    z-index: 2;
   }
 
-  /* Sidebar mobile optimization */
+  /* Enhanced sidebar with modern glass morphism */
   .sidebar {
     position: fixed !important;
     bottom: 0 !important;
@@ -1943,14 +1982,30 @@ main {
     right: 0 !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 112px !important;
-    background: rgba(46, 46, 51, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border-top: 2px solid rgba(255, 219, 112, 0.3) !important;
-    border-radius: 20px 20px 0 0 !important;
-    padding: 15px !important;
+    max-height: 120px !important;
+    background: linear-gradient(135deg, rgba(46, 46, 51, 0.95), rgba(65, 65, 80, 0.9)) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    border-top: 3px solid transparent !important;
+    border-image: linear-gradient(90deg, rgba(255, 219, 112, 0.6), rgba(120, 119, 198, 0.4), rgba(255, 219, 112, 0.6)) 1 !important;
+    border-radius: 25px 25px 0 0 !important;
+    padding: 20px !important;
     z-index: 1000 !important;
-    box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.4) !important;
+    box-shadow:
+      0 -15px 40px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 50px rgba(255, 219, 112, 0.1) !important;
+    animation: slideUpEntry 0.8s ease-out;
+  }
+
+  @keyframes slideUpEntry {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   .sidebar.active {
@@ -2006,93 +2061,270 @@ main {
     font-size: 0.7rem !important;
   }
 
-  /* Mobile navbar optimization */
+  /* Enhanced mobile navbar with floating design */
   .navbar {
     position: fixed !important;
-    bottom: 20px !important;
-    left: 20px !important;
-    right: 20px !important;
+    bottom: 130px !important;
+    left: 15px !important;
+    right: 15px !important;
     top: auto !important;
     width: auto !important;
-    background: rgba(46, 46, 51, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    border-radius: 20px !important;
-    padding: 10px !important;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+    background: linear-gradient(135deg, rgba(46, 46, 51, 0.95), rgba(35, 35, 45, 0.9)) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    border-radius: 25px !important;
+    padding: 12px !important;
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 219, 112, 0.15) !important;
     z-index: 999 !important;
+    border: 1px solid rgba(255, 219, 112, 0.2);
+    animation: floatNav 3s ease-in-out infinite;
+  }
+
+  @keyframes floatNav {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
   }
 
   .navbar-list {
-    padding: 5px !important;
-    gap: 5px !important;
+    padding: 8px !important;
+    gap: 8px !important;
+    display: flex;
+    justify-content: space-between;
   }
 
   .navbar-link {
-    padding: 10px 8px !important;
-    font-size: 0.7rem !important;
-    border-radius: 12px !important;
+    padding: 12px 10px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    border-radius: 18px !important;
     text-align: center !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 219, 112, 0.2) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
-  /* About cards mobile layout */
+  .navbar-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 219, 112, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .navbar-link:hover::before {
+    left: 100%;
+  }
+
+  .navbar-link:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    background: rgba(255, 219, 112, 0.15) !important;
+    border-color: rgba(255, 219, 112, 0.5) !important;
+    color: #ffdb70 !important;
+    box-shadow: 0 8px 25px rgba(255, 219, 112, 0.2) !important;
+  }
+
+  .navbar-link.active {
+    background: linear-gradient(135deg, rgba(255, 219, 112, 0.2), rgba(255, 219, 112, 0.1)) !important;
+    border-color: rgba(255, 219, 112, 0.6) !important;
+    color: #ffdb70 !important;
+    box-shadow: 0 0 15px rgba(255, 219, 112, 0.3) !important;
+  }
+
+  /* Enhanced mobile content cards with dynamic effects */
+  .content-card {
+    background: linear-gradient(145deg, rgba(46, 46, 51, 0.8), rgba(35, 35, 45, 0.9)) !important;
+    backdrop-filter: blur(20px) saturate(150%) !important;
+    border: 1px solid rgba(255, 219, 112, 0.15) !important;
+    border-radius: 20px !important;
+    box-shadow:
+      0 15px 35px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 20px rgba(255, 219, 112, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .content-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 219, 112, 0.1), transparent);
+    transition: left 0.6s ease;
+    z-index: 1;
+  }
+
+  .content-card:hover::before {
+    left: 100%;
+  }
+
+  .content-card:hover {
+    transform: translateY(-5px) scale(1.02) !important;
+    border-color: rgba(255, 219, 112, 0.3) !important;
+    box-shadow:
+      0 25px 50px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      0 0 30px rgba(255, 219, 112, 0.2) !important;
+  }
+
+  /* About cards with staggered animations */
   .about-intro, .about-expertise, .about-passion, .about-goals {
-    margin-bottom: 15px !important;
-    padding: 20px 15px !important;
-    min-height: 150px !important;
+    margin-bottom: 20px !important;
+    padding: 25px 20px !important;
+    min-height: 160px !important;
+    position: relative !important;
+    z-index: 2 !important;
+    animation: slideInUp 0.6s ease-out backwards;
+  }
+
+  .about-intro {
+    animation-delay: 0.1s;
+  }
+
+  .about-expertise {
+    animation-delay: 0.2s;
+  }
+
+  .about-passion {
+    animation-delay: 0.3s;
+  }
+
+  .about-goals {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .about-intro h3, .about-expertise h3, .about-passion h3, .about-goals h3 {
-    font-size: 1.1rem !important;
-    margin-bottom: 10px !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 12px !important;
+    color: #ffdb70 !important;
+    text-shadow: 0 0 10px rgba(255, 219, 112, 0.3) !important;
+    position: relative !important;
+    z-index: 3 !important;
   }
 
   .about-intro p, .about-expertise p, .about-passion p, .about-goals p {
-    font-size: 0.9rem !important;
-    line-height: 1.5 !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    position: relative !important;
+    z-index: 3 !important;
   }
 
-  /* Services mobile layout */
+  /* Enhanced services mobile layout with pulse effects */
   .service-item {
     flex-direction: column !important;
     text-align: center !important;
-    padding: 20px 15px !important;
+    padding: 25px 20px !important;
     min-height: auto !important;
+    animation: pulseGlow 4s ease-in-out infinite;
+    animation-delay: calc(var(--animation-order, 0) * 0.2s);
   }
+
+  .service-item:nth-child(1) { --animation-order: 1; }
+  .service-item:nth-child(2) { --animation-order: 2; }
+  .service-item:nth-child(3) { --animation-order: 3; }
+  .service-item:nth-child(4) { --animation-order: 4; }
 
   .service-item .service-icon-box {
     margin-right: 0 !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 20px !important;
+    transform: scale(1.2) !important;
+    filter: drop-shadow(0 0 15px rgba(255, 219, 112, 0.4)) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .service-item:hover .service-icon-box {
+    transform: scale(1.3) rotate(5deg) !important;
+    filter: drop-shadow(0 0 25px rgba(255, 219, 112, 0.6)) !important;
   }
 
   .service-item .service-item-title {
-    font-size: 1.1rem !important;
-    margin-bottom: 8px !important;
+    font-size: 1.15rem !important;
+    margin-bottom: 10px !important;
+    color: #ffdb70 !important;
+    text-shadow: 0 0 8px rgba(255, 219, 112, 0.3) !important;
   }
 
   .service-item .service-item-text {
-    font-size: 0.9rem !important;
+    font-size: 0.95rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    line-height: 1.5 !important;
   }
 
-  /* Testimonials mobile - stack vertically */
+  /* Enhanced testimonials with card flip effect */
   .testimonials-list {
     flex-direction: column !important;
     overflow-x: visible !important;
-    padding: 15px !important;
+    padding: 20px !important;
+    gap: 20px !important;
   }
 
   .testimonials-item {
     width: 100% !important;
-    margin-bottom: 15px !important;
+    margin-bottom: 0 !important;
+    perspective: 1000px !important;
   }
 
   .testimonials-item .content-card {
-    padding: 20px 15px !important;
+    padding: 25px 20px !important;
     min-height: auto !important;
+    transform-style: preserve-3d !important;
+    transition: transform 0.6s ease !important;
   }
 
-  /* Project items mobile */
+  .testimonials-item:hover .content-card {
+    transform: rotateY(5deg) rotateX(5deg) !important;
+  }
+
+  /* Enhanced project items with 3D hover effects */
   .project-item {
-    margin-bottom: 20px !important;
+    margin-bottom: 25px !important;
+    perspective: 1000px !important;
+    animation: fadeInScale 0.8s ease-out backwards;
+    animation-delay: calc(var(--project-index, 0) * 0.15s);
+  }
+
+  .project-item:nth-child(1) { --project-index: 1; }
+  .project-item:nth-child(2) { --project-index: 2; }
+  .project-item:nth-child(3) { --project-index: 3; }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .project-item:hover {
+    transform: translateY(-8px) !important;
   }
 
   .project-img {
