@@ -17,9 +17,8 @@
       // In production, these should be set by GitHub Actions or Netlify
       window.SLACK_WEBHOOK_URL = window.SLACK_WEBHOOK_URL || '';
     } else {
-      // Local development - you can set this manually for testing
-      // In production, this will be replaced by build process
-      window.SLACK_WEBHOOK_URL = 'REPLACE_WITH_ACTUAL_URL_IN_PRODUCTION';
+      // Local development - use actual URL for testing
+      window.SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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';
     }
 
     // Log environment status (remove in production)

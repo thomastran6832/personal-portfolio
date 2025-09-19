@@ -789,7 +789,13 @@
               </h3>
             </div>
 
-            <form action="https://formspree.io/f/xpzgkqyv" method="POST" class="form" data-form style="max-width: 600px; margin: 0 auto;">
+            <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you" class="form" data-form style="max-width: 600px; margin: 0 auto;">
+
+              <!-- Honeypot field for spam protection -->
+              <input type="hidden" name="bot-field" />
+
+              <!-- Form name for Netlify -->
+              <input type="hidden" name="form-name" value="contact" />
 
               <div class="input-wrapper" style="margin-bottom: 20px;">
                 <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 12px; padding: 15px 20px; color: #ffffff; font-size: 1rem; transition: all 0.3s ease; outline: none; width: 100%;" onfocus="this.style.borderColor='#ffdb70'; this.style.boxShadow='0 0 20px rgba(255,219,112,0.3)'" onblur="this.style.borderColor='#444'; this.style.boxShadow='none'">

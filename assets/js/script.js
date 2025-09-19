@@ -139,8 +139,12 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
-// Slack integration
-const SLACK_WEBHOOK_URL = window.SLACK_WEBHOOK_URL || process.env.SLACK_WEBHOOK_URL;
+// Slack integration - ensure URL is available
+const getSlackWebhookURL = () => {
+  return window.SLACK_WEBHOOK_URL ||
+         (typeof process !== 'undefined' && process.env && process.env.SLACK_WEBHOOK_URL) ||
+         'https://hooks.slack.com/services/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';
+};
 
 async function sendToSlack(formData) {
   const messageText = `🔔 *New Portfolio Contact Form Submission*
@@ -156,9 +160,18 @@ ${formData.message}
     text: messageText
   };
 
+  const webhookURL = getSlackWebhookURL();
+
+  if (!webhookURL || webhookURL === '') {
+    console.error('❌ Slack webhook URL not configured');
+    return false;
+  }
+
   try {
-    console.log('Sending to Slack:', slackMessage); // Debug log
-    const response = await fetch(SLACK_WEBHOOK_URL, {
+    console.log('📤 Sending to Slack:', slackMessage);
+    console.log('🔗 Using webhook URL:', webhookURL.substring(0, 50) + '...');
+
+    const response = await fetch(webhookURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -166,23 +179,39 @@ ${formData.message}
       body: JSON.stringify(slackMessage)
     });
 
-    console.log('Slack response status:', response.status); // Debug log
-    if (!response.ok) {
-      console.error('Slack response error:', await response.text());
-    }
+    const responseText = await response.text();
+    console.log('📨 Slack response status:', response.status);
+    console.log('📨 Slack response text:', responseText);
 
-    return response.ok;
+    if (response.ok && responseText === 'ok') {
+      console.log('✅ Message successfully sent to Slack!');
+      return true;
+    } else {
+      console.error('❌ Slack webhook failed:', responseText);
+      // Check if it's a webhook issue
+      if (responseText === 'no_service') {
+        console.error('🔧 Webhook URL appears to be invalid or expired. Please check your Slack webhook configuration.');
+      }
+      return false;
+    }
   } catch (error) {
-    console.error('Failed to send to Slack:', error);
+    console.error('❌ Failed to send to Slack:', error);
     return false;
   }
 }
 
-// Enhanced form submission handler
+// Enhanced form submission handler for Netlify Forms
 if (form) {
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
+  form.addEventListener('submit', function(e) {
+    // Allow form to submit normally to Netlify
+    // Just provide visual feedback
 
+    // Disable submit button during submission
+    formBtn.style.opacity = '0.7';
+    formBtn.style.cursor = 'not-allowed';
+    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
+
+    // Optional: Try to send to Slack as backup notification
     const formData = new FormData(this);
     const data = {
       fullname: formData.get('fullname'),
@@ -190,67 +219,19 @@ if (form) {
       message: formData.get('message')
     };
 
-    // Disable submit button during submission
-    formBtn.style.opacity = '0.7';
-    formBtn.style.cursor = 'not-allowed';
-    formBtn.innerHTML = '<ion-icon name="hourglass-outline"></ion-icon><span>Sending...</span>';
-
-    try {
-      // Send to Formspree (email)
-      const emailResponse = await fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      // Send to Slack
-      const slackSuccess = await sendToSlack(data);
-
-      if (emailResponse.ok) {
-        // Success message
-        formBtn.style.background = 'linear-gradient(45deg, #4caf50, #45a049)';
-        formBtn.innerHTML = '<ion-icon name="checkmark-circle"></ion-icon><span>Message Sent!</span>';
-
-        // Reset form
-        this.reset();
-        formBtn.setAttribute("disabled", "");
-
-        // Show success notification
-        if (slackSuccess) {
-          console.log('✅ Message sent to both Email and Slack');
-        } else {
-          console.log('✅ Message sent to Email (Slack failed)');
-        }
-
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          formBtn.style.background = 'linear-gradient(45deg, #ffdb70, #ffc107)';
-          formBtn.style.opacity = '1';
-          formBtn.style.cursor = 'pointer';
-          formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
-        }, 3000);
-
+    // Try Slack notification (non-blocking)
+    sendToSlack(data).then(slackSuccess => {
+      if (slackSuccess) {
+        console.log('✅ Also sent notification to Slack');
       } else {
-        throw new Error('Email submission failed');
+        console.log('ℹ️ Slack notification failed, but form will still submit to Netlify');
       }
+    }).catch(error => {
+      console.log('ℹ️ Slack notification error:', error);
+    });
 
-    } catch (error) {
-      // Error message
-      formBtn.style.background = 'linear-gradient(45deg, #f44336, #d32f2f)';
-      formBtn.innerHTML = '<ion-icon name="close-circle"></ion-icon><span>Failed to Send</span>';
-
-      console.error('❌ Failed to send message:', error);
-
-      // Reset button after 3 seconds
-      setTimeout(() => {
-        formBtn.style.background = 'linear-gradient(45deg, #ffdb70, #ffc107)';
-        formBtn.style.opacity = '1';
-        formBtn.style.cursor = 'pointer';
-        formBtn.innerHTML = '<ion-icon name="paper-plane"></ion-icon><span>Send Message</span>';
-      }, 3000);
-    }
+    // Let the form submit naturally to Netlify
+    // Netlify will redirect to thank-you page
   });
 }
 
