@@ -176,15 +176,15 @@ function initializePage() {
     targetPage = localStorage.getItem('activeTab');
   }
 
-  // If no saved tab, default to 'about'
+  // If no saved tab, default to 'resume'
   if (!targetPage) {
-    targetPage = 'about';
+    targetPage = 'resume';
   }
 
   // Validate that the target page exists
   const pageExists = Array.from(pages).some(page => page.dataset.page === targetPage);
   if (!pageExists) {
-    targetPage = 'about';
+    targetPage = 'resume';
   }
 
   activatePage(targetPage);
@@ -200,7 +200,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
 // Handle browser back/forward buttons
 window.addEventListener('hashchange', function() {
-  const targetPage = window.location.hash.substring(1) || 'about';
+  const targetPage = window.location.hash.substring(1) || 'resume';
   activatePage(targetPage);
 });
 

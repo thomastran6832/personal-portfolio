@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Option 3 - Simple Clean Grid</title>
+    <style>
+        body {
+            background: #1e1e1f;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            padding: 40px;
+        }
+
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #ffdb70;
+            font-weight: 600;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #444;
+            border-radius: 8px;
+            background: #2a2a2b;
+        }
+
+        .skill-tag {
+            background: #1e1e1f;
+            border: 1px solid #444;
+            border-radius: 6px;
+            padding: 8px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            min-height: 60px;
+        }
+
+        .skill-tag:hover {
+            border-color: #ffdb70;
+            background: #333;
+            transform: translateY(-1px);
+        }
+
+        .skill-icon {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .skill-name {
+            color: #ffdb70;
+            font-weight: 500;
+            font-size: 0.65rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <h3 class="skills-title">Skills</h3>
+    <div class="skills-container">
+        <div class="skill-tag">
+            <span class="skill-icon">⚙️</span>
+            <p class="skill-name">DevOps</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">🚢</span>
+            <p class="skill-name">Kubernetes</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">🐳</span>
+            <p class="skill-name">Docker</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">🏗️</span>
+            <p class="skill-name">Terraform</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">☁️</span>
+            <p class="skill-name">AWS</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">🐧</span>
+            <p class="skill-name">Linux</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">🔄</span>
+            <p class="skill-name">CI/CD</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-icon">📊</span>
+            <p class="skill-name">Monitoring</p>
+        </div>
+    </div>
+</body>
+</html>

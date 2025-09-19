@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Option 2 - Hexagonal Glow</title>
+    <style>
+        body {
+            background: #1e1e1f;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            padding: 40px;
+        }
+
+        .skills-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: #ffdb70;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255, 219, 112, 0.5);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #2a2a2b, #1e1e1f, #2a2a2b);
+            border: 3px solid #444;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 219, 112, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .skill-tag:hover::before {
+            opacity: 1;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.1) rotateZ(5deg);
+            border-color: #ffdb70;
+            box-shadow:
+                0 0 25px rgba(255, 219, 112, 0.6),
+                inset 0 0 15px rgba(255, 219, 112, 0.1);
+        }
+
+        .skill-emoji {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 8px rgba(255, 219, 112, 0.3));
+        }
+
+        .skill-name {
+            color: #ffdb70;
+            font-weight: 600;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+            text-shadow: 0 0 10px rgba(255, 219, 112, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .skill-tag {
+                width: 120px;
+                height: 120px;
+            }
+            .skill-emoji {
+                font-size: 1.5rem;
+            }
+            .skill-name {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h3 class="skills-title">Skills</h3>
+    <div class="skills-container">
+        <div class="skill-tag">
+            <span class="skill-emoji">⚙️</span>
+            <p class="skill-name">DevOps</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">🚢</span>
+            <p class="skill-name">Kubernetes</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">🐳</span>
+            <p class="skill-name">Docker</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">🏗️</span>
+            <p class="skill-name">Terraform</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">☁️</span>
+            <p class="skill-name">AWS</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">🐧</span>
+            <p class="skill-name">Linux</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">🔄</span>
+            <p class="skill-name">CI/CD</p>
+        </div>
+        <div class="skill-tag">
+            <span class="skill-emoji">📊</span>
+            <p class="skill-name">Monitoring</p>
+        </div>
+    </div>
+</body>
+</html>
