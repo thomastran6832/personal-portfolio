@@ -1,0 +1,422 @@
+/* ===== MOBILE-ONLY CSS - SINGLE PAGE LAYOUT ===== */
+
+/* Smooth scrolling for mobile navigation */
+html {
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 120px !important;
+}
+
+/* Mobile header styling */
+.mobile-header {
+  display: block !important;
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.98), rgba(30, 30, 31, 0.98)) !important;
+  backdrop-filter: blur(25px) !important;
+  -webkit-backdrop-filter: blur(25px) !important;
+  border-bottom: 2px solid rgba(255, 219, 112, 0.3) !important;
+  padding: 15px 20px !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1001 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mobile-profile {
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  max-width: 100% !important;
+}
+
+.mobile-avatar-box {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  border: 3px solid var(--orange-yellow-crayola) !important;
+  box-shadow: 0 4px 15px rgba(255, 219, 112, 0.3) !important;
+  flex-shrink: 0 !important;
+}
+
+.mobile-avatar-box img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.mobile-info-content {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.mobile-name {
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 0 5px 0 !important;
+  line-height: 1.2 !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.mobile-title {
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+  color: var(--orange-yellow-crayola) !important;
+  margin: 0 !important;
+  line-height: 1.3 !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+/* Force hide sidebar and navbar completely */
+.sidebar {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.navbar {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Show mobile navigation - smaller and more compact */
+.mobile-nav {
+  display: block !important;
+  position: sticky !important;
+  top: 90px !important;
+  background: rgba(26, 26, 46, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(255, 219, 112, 0.2) !important;
+  padding: 8px 15px !important;
+  z-index: 1000 !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 0 0 15px 15px !important;
+}
+
+.mobile-nav-list {
+  display: flex !important;
+  justify-content: space-around !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.mobile-nav-link {
+  display: block !important;
+  padding: 6px 10px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus {
+  background: linear-gradient(135deg, rgba(255, 219, 112, 0.25), rgba(255, 219, 112, 0.15)) !important;
+  color: var(--orange-yellow-crayola) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(255, 219, 112, 0.2) !important;
+}
+
+/* Active mobile nav link */
+.mobile-nav-link.active {
+  background: linear-gradient(135deg, var(--orange-yellow-crayola), #ffc107) !important;
+  color: #0c0c0c !important;
+  font-weight: 700 !important;
+  box-shadow: 0 3px 12px rgba(255, 219, 112, 0.4) !important;
+}
+
+/* Main content takes full width */
+main {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+}
+
+.main-content {
+  margin-left: 0 !important;
+  padding: 20px 15px !important;
+  width: 100% !important;
+}
+
+/* Show all articles as single page */
+article {
+  display: block !important;
+  opacity: 1 !important;
+  margin-bottom: 40px !important;
+  padding: 20px 0 !important;
+}
+
+article[data-page] {
+  transform: translateX(0) !important;
+}
+
+/* Add spacing between sections */
+.about {
+  margin-bottom: 50px !important;
+}
+
+.resume {
+  margin-bottom: 50px !important;
+}
+
+.portfolio {
+  margin-bottom: 50px !important;
+}
+
+.contact {
+  margin-bottom: 20px !important;
+}
+
+/* Header styling for single page */
+.article-title {
+  font-size: 2rem !important;
+  margin-bottom: 30px !important;
+  padding: 20px 0 15px 0 !important;
+  border-bottom: 3px solid var(--orange-yellow-crayola) !important;
+  text-align: center !important;
+  background: linear-gradient(135deg, #ffffff, #f5f5f5) !important;
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  position: relative !important;
+}
+
+.article-title::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 60px !important;
+  height: 4px !important;
+  background: linear-gradient(90deg, var(--orange-yellow-crayola), #ffc107) !important;
+  border-radius: 2px !important;
+}
+
+/* Contact info styling for mobile */
+.contact-container {
+  padding: 15px !important;
+  gap: 25px !important;
+}
+
+.contact-info-box, .contact-form-box {
+  padding: 25px !important;
+  border-radius: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Mobile contact methods styling */
+.contact-method {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.contact-method:hover {
+  transform: translateY(-3px) !important;
+  border-color: rgba(255, 219, 112, 0.4) !important;
+  background: linear-gradient(135deg, rgba(255, 219, 112, 0.15), rgba(255, 219, 112, 0.08)) !important;
+  box-shadow: 0 8px 25px rgba(255, 219, 112, 0.2) !important;
+}
+
+.contact-method:active {
+  transform: translateY(-1px) scale(0.98) !important;
+}
+
+/* Project grid mobile optimization */
+.project-list {
+  grid-template-columns: 1fr !important;
+  gap: 20px !important;
+}
+
+.project-item {
+  margin-bottom: 20px !important;
+}
+
+/* Service grid mobile optimization */
+.service-list {
+  grid-template-columns: 1fr !important;
+  gap: 25px !important;
+}
+
+.service-item {
+  background: linear-gradient(135deg, rgba(30, 30, 31, 0.9), rgba(42, 42, 43, 0.9)) !important;
+  border: 1px solid rgba(255, 219, 112, 0.15) !important;
+  border-radius: 18px !important;
+  padding: 25px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+}
+
+.service-item:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  border-color: rgba(255, 219, 112, 0.4) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 219, 112, 0.15) !important;
+}
+
+/* Better mobile spacing */
+.content-card {
+  margin-bottom: 25px !important;
+  padding: 25px !important;
+  border-radius: 20px !important;
+  background: linear-gradient(135deg, rgba(30, 30, 31, 0.95), rgba(42, 42, 43, 0.95)) !important;
+  border: 1px solid rgba(255, 219, 112, 0.1) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.content-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(255, 219, 112, 0.3) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 219, 112, 0.1) !important;
+}
+
+/* Mobile testimonials */
+.testimonials-list {
+  display: block !important;
+  gap: 25px !important;
+}
+
+.testimonials-item {
+  margin-bottom: 25px !important;
+  width: 100% !important;
+}
+
+.testimonials-item .content-card {
+  background: linear-gradient(135deg, rgba(30, 30, 31, 0.95), rgba(42, 42, 43, 0.95)) !important;
+  border: 2px solid rgba(255, 219, 112, 0.2) !important;
+  border-radius: 20px !important;
+  padding: 25px !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.testimonials-item .content-card::before {
+  content: '"' !important;
+  position: absolute !important;
+  top: -10px !important;
+  left: 15px !important;
+  font-size: 4rem !important;
+  color: rgba(255, 219, 112, 0.1) !important;
+  font-family: serif !important;
+  line-height: 1 !important;
+}
+
+/* Mobile body optimizations */
+body {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 35%, #16213e 70%, #0a0a0f 100%) !important;
+  background-size: 400% 400% !important;
+  background-attachment: fixed !important;
+  animation: gradientShift 15s ease infinite !important;
+  /* Safari mobile optimizations */
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent zoom on input focus (Safari) */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Better touch handling */
+  touch-action: manipulation;
+  /* Fix mobile viewport and layout */
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-top: env(safe-area-inset-top, 0) !important;
+  min-height: 100vh !important;
+  min-height: -webkit-fill-available !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Small mobile phones (320px - 480px) */
+@media (max-width: 480px) {
+  main {
+    padding: 8px !important;
+  }
+
+  .main-content {
+    padding: 0 !important;
+  }
+
+  .mobile-header {
+    padding: 12px 15px !important;
+  }
+
+  .mobile-avatar-box {
+    width: 50px !important;
+    height: 50px !important;
+    border-width: 2px !important;
+  }
+
+  .mobile-name {
+    font-size: 1.1rem !important;
+  }
+
+  .mobile-title {
+    font-size: 0.75rem !important;
+  }
+
+  .mobile-nav {
+    padding: 6px 10px !important;
+    border-radius: 0 0 12px 12px !important;
+    top: 75px !important;
+  }
+
+  .mobile-nav-link {
+    padding: 5px 8px !important;
+    font-size: 0.7rem !important;
+    border-radius: 8px !important;
+  }
+
+  .article-title {
+    font-size: 1.6rem !important;
+    padding: 15px 0 12px 0 !important;
+  }
+
+  .article-title::before {
+    width: 40px !important;
+    height: 3px !important;
+  }
+
+  .contact-info-box, .contact-form-box {
+    padding: 20px !important;
+    border-radius: 15px !important;
+  }
+
+  .content-card {
+    padding: 18px !important;
+    border-radius: 15px !important;
+  }
+
+  .service-item {
+    padding: 20px !important;
+    border-radius: 15px !important;
+  }
+
+  .testimonials-item .content-card {
+    padding: 20px !important;
+    border-radius: 15px !important;
+  }
+}

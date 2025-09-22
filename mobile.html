@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>Thomas Tran - DevOps Engineer | Cloud Infrastructure & Automation Portfolio</title>
-  <meta name="description" content="Thomas Tran - DevOps Engineer specializing in Cloud Infrastructure, CI/CD, Kubernetes, and Automation. View my professional portfolio showcasing innovative projects.">
+  <title>Thomas Tran - DevOps Engineer | Mobile Version</title>
+  <meta name="description" content="Thomas Tran - DevOps Engineer specializing in Cloud Infrastructure, CI/CD, Kubernetes, and Automation. Mobile portfolio version.">
   <meta name="keywords" content="DevOps Engineer, Cloud Infrastructure, Kubernetes, CI/CD, Automation, AWS, Docker, Terraform">
   <meta property="og:title" content="Thomas Tran - DevOps Engineer Portfolio">
   <meta property="og:description" content="Professional portfolio showcasing DevOps, Cloud Engineering, and Infrastructure Automation projects">
@@ -24,35 +24,10 @@
   <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
 
   <!--
-    - custom css link
+    - MOBILE-SPECIFIC CSS
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
-
-  <!--
-    - device-specific css (loaded conditionally)
-  -->
-  <script>
-    // Device detection and conditional CSS loading
-    function isMobileDevice() {
-      return /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-             (window.innerWidth <= 768);
-    }
-
-    // Load appropriate CSS based on device
-    if (isMobileDevice()) {
-      // Load mobile CSS
-      const mobileCSS = document.createElement('link');
-      mobileCSS.rel = 'stylesheet';
-      mobileCSS.href = './assets/css/mobile.css';
-      document.head.appendChild(mobileCSS);
-    } else {
-      // Load desktop CSS
-      const desktopCSS = document.createElement('link');
-      desktopCSS.rel = 'stylesheet';
-      desktopCSS.href = './assets/css/desktop.css';
-      document.head.appendChild(desktopCSS);
-    }
-  </script>
+  <link rel="stylesheet" href="./assets/css/mobile.css">
 
   <!--
     - google font link
@@ -67,7 +42,6 @@
   <!--
     - #MAIN
   -->
-
 
   <main>
 
@@ -88,7 +62,7 @@
     </header>
 
     <!--
-      - #SIDEBAR
+      - #SIDEBAR (hidden on mobile)
     -->
 
     <aside class="sidebar" data-sidebar>
@@ -147,20 +121,6 @@
 
           </li>
 
-          <!-- <li class="contact-item">
-
-            <div class="icon-box">
-              <ion-icon name="calendar-outline"></ion-icon>
-            </div>
-
-            <!-- <div class="contact-info">
-              <p class="contact-title">Birthday</p>
-
-              <time datetime="1997">1997</time>
-            </div>
-
-          </li> -->
-
           <li class="contact-item">
 
             <div class="icon-box">
@@ -179,35 +139,9 @@
 
         <div class="separator"></div>
 
-        <!-- <ul class="social-list">
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li class="social-item">
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-        </ul> -->
-
       </div>
 
     </aside>
-
-
-
-
 
     <!--
       - #main-content
@@ -216,7 +150,7 @@
     <div class="main-content">
 
       <!--
-        - #NAVBAR
+        - #NAVBAR (hidden on mobile)
       -->
 
       <nav class="navbar">
@@ -245,7 +179,7 @@
       </nav>
 
       <!--
-        - #MOBILE-NAV (for mobile single-page layout)
+        - #MOBILE-NAV (visible only on mobile)
       -->
 
       <nav class="mobile-nav">
@@ -256,10 +190,6 @@
           <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
         </ul>
       </nav>
-
-
-
-
 
       <!--
         - #ABOUT
@@ -302,7 +232,6 @@
             </div>
           </section>
         </div>
-
 
         <!--
           - service
@@ -383,7 +312,6 @@
 
         </section>
 
-
         <!--
           - testimonials
         -->
@@ -454,52 +382,6 @@
 
         </section>
 
-
-        <!--
-          - testimonials modal
-        -->
-
-        <div class="modal-container" data-modal-container>
-
-          <div class="overlay" data-overlay></div>
-
-          <section class="testimonials-modal">
-
-            <button class="modal-close-btn" data-modal-close-btn>
-              <ion-icon name="close-outline"></ion-icon>
-            </button>
-
-            <div class="modal-img-wrapper">
-              <figure class="modal-avatar-box">
-                <img src="./assets/images/avatar-1.png" alt="Daniel lewis" width="80" data-modal-img>
-              </figure>
-
-              <img src="./assets/images/icon-quote.svg" alt="quote icon">
-            </div>
-
-            <div class="modal-content">
-
-              <h4 class="h3 modal-title" data-modal-title>Daniel lewis</h4>
-
-              <time datetime="2021-06-14">14 June, 2021</time>
-
-              <div data-modal-text>
-                <p>
-                  Richard was hired to create a corporate identity. We were very pleased with the work done. She has a
-                  lot of experience
-                  and is very concerned about the needs of client. Lorem ipsum dolor sit amet, ullamcous cididt
-                  consectetur adipiscing
-                  elit, seds do et eiusmod tempor incididunt ut laborels dolore magnarels alia.
-                </p>
-              </div>
-
-            </div>
-
-          </section>
-
-        </div>
-
-
         <!--
           - clients
         -->
@@ -551,10 +433,6 @@
         </section>
 
       </article>
-
-
-
-
 
       <!--
         - #RESUME
@@ -687,8 +565,7 @@
 
           <div class="content-card" data-page="skills">
 
-            <div class="skills-container" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 15px;">
-
+            <div class="skills-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 15px;">
 
             <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
               <span style="font-size: 1rem; color: #326ce5;">☸️</span>
@@ -726,29 +603,7 @@
             </div>
 
             <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-              <span style="font-size: 1rem; color: #e57000;">💻</span>
-              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Virtualization</span>
-            </div>
-
-            <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-              <span style="font-size: 1rem; color: #4e9bcd;">🔒</span>
-              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Security</span>
-            </div>
-
-            <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-              <span style="font-size: 1rem; color: #466bb0;">🕸️</span>
-              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Service Mesh</span>
-            </div>
-
-            <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-              <span style="font-size: 1rem; color: #3776ab;">🐍</span>
-              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">Scripting</span>
-            </div>
-
-
-            <div class="skill-tag" style="background: linear-gradient(135deg, #2a2a2b, #1e1e1f); border: 2px solid #444; border-radius: 15px; padding: 10px 15px; display: flex; align-items: center; gap: 8px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);" onmouseover="this.style.borderColor='#ffdb70'; this.style.transform='translateY(-5px) scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(255, 219, 112, 0.3)'" onmouseout="this.style.borderColor='#444'; this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 4px 15px rgba(0, 0, 0, 0.2)'">
-              <span style="font-size: 1rem; color: #00d4aa;">🤖</span>
-              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">AI-Driven</span>
+              <span style="color: #ffdb70; font-weight: 600; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;">And More...</span>
             </div>
 
             </div>
@@ -758,10 +613,6 @@
         </section>
 
       </article>
-
-
-
-
 
       <!--
         - #PORTFOLIO
@@ -770,52 +621,42 @@
       <article class="portfolio" data-page="project" id="projects">
 
         <header>
-          <h2 class="h2 article-title">Project</h2>
+          <h2 class="h2 article-title">Projects</h2>
         </header>
 
-        
         <section class="projects">
 
           <ul class="filter-list">
             <!-- Dynamic filter buttons will be generated here by JavaScript -->
           </ul>
-      
+
           <div class="filter-select-box">
-      
+
             <button class="filter-select" data-select>
-      
+
               <div class="select-value" data-select-value>Select category</div>
-      
+
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
               </div>
-      
+
             </button>
-      
+
             <ul class="select-list">
               <!-- Dynamic select options will be generated here by JavaScript -->
             </ul>
-      
+
           </div>
-      
+
           <!-- This is where project items will be loaded -->
           <ul class="project-list" id="projects-container">
             <!-- Projects will be loaded here by JavaScript -->
             <li class="loading">Loading projects...</li>
           </ul>
-      
+
         </section>
 
       </article>
-
-
-
-
-
-
-
-
-
 
       <!--
         - #CONTACT
@@ -928,11 +769,6 @@
 
   </main>
 
-
-
-
-
-
   <!--
     - Environment configuration (load first)
   -->
@@ -954,110 +790,6 @@
   -->
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script>
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/index-admin.html";
-          });
-        }
-      });
-    }
-  </script>
-
-  <!-- Contact Section Responsive Styles -->
-  <style>
-    /* Contact Section Responsive Styles */
-    @media (max-width: 768px) {
-      .contact-container {
-        padding: 10px !important;
-        gap: 30px !important;
-      }
-
-      .contact-info-box, .contact-form-box {
-        padding: 25px !important;
-        border-radius: 20px !important;
-      }
-
-      .contact-methods {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-
-      .input-wrapper {
-        grid-template-columns: 1fr !important;
-        gap: 15px !important;
-      }
-
-      .contact-method {
-        padding: 20px !important;
-      }
-
-      .contact-info-box h3, .contact-form-box h3 {
-        font-size: 1.4rem !important;
-      }
-
-      .contact-info-box p {
-        font-size: 1rem !important;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .contact-container {
-        padding: 5px !important;
-      }
-
-      .contact-info-box, .contact-form-box {
-        padding: 20px !important;
-        border-radius: 15px !important;
-      }
-
-      .contact-info-box h3, .contact-form-box h3 {
-        font-size: 1.2rem !important;
-      }
-
-      .form-btn {
-        padding: 12px 25px !important;
-        font-size: 1rem !important;
-      }
-    }
-
-    /* Form validation styles */
-    .form-input:valid {
-      border-color: #4caf50 !important;
-    }
-
-    .form-input:invalid:not(:focus):not(:placeholder-shown) {
-      border-color: #f44336 !important;
-    }
-
-    /* Button enabled state */
-    .form-btn:not(:disabled) {
-      cursor: pointer !important;
-      opacity: 1 !important;
-    }
-
-    .form-btn:disabled {
-      opacity: 0.6 !important;
-      cursor: not-allowed !important;
-    }
-
-    /* Smooth animations */
-    .contact-method, .form-input, .form-btn {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-
-    /* Placeholder styles */
-    .form-input::placeholder {
-      color: #999 !important;
-      opacity: 0.8 !important;
-    }
-
-    .form-input:focus::placeholder {
-      opacity: 0.5 !important;
-    }
-  </style>
 
   <!-- Project data loader - moved to bottom to ensure DOM is ready -->
   <script src="./assets/js/project-data.js"></script>
