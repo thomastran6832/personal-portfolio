@@ -1919,16 +1919,36 @@ main {
   opacity: 1;
 }
 
-/* ===== MOBILE OPTIMIZATION - MODERN & ENGAGING ===== */
+/* ===== MOBILE OPTIMIZATION - SAFARI & CHROME ENHANCED ===== */
 
 /* Mobile-first responsive breakpoints */
 @media (max-width: 768px) {
 
-  /* Add mobile-specific background animations */
+  /* Enhanced mobile body with Safari/Chrome optimizations */
   body {
     background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 35%, #16213e 70%, #0a0a0f 100%) !important;
     background-size: 400% 400% !important;
+    background-attachment: fixed !important;
     animation: gradientShift 15s ease infinite !important;
+    /* Safari mobile optimizations */
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Prevent zoom on input focus (Safari) */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Better touch handling */
+    touch-action: manipulation;
+    /* Fix mobile viewport and layout */
+    margin: 0 !important;
+    padding: 0 !important;
+    padding-top: env(safe-area-inset-top, 0) !important;
+    min-height: 100vh !important;
+    min-height: -webkit-fill-available !important;
+    overflow-x: hidden !important;
+    position: relative !important;
+    width: 100% !important;
   }
 
   @keyframes gradientShift {
@@ -1962,19 +1982,24 @@ main {
 
   /* Main layout adjustments */
   main {
-    margin-bottom: 80px !important;
-    padding: 10px !important;
+    margin-bottom: 140px !important;
+    padding: 0 !important;
     position: relative;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   .main-content {
-    padding: 20px 15px !important;
+    padding: 20px 15px 40px 15px !important;
     margin-left: 0 !important;
     position: relative;
     z-index: 2;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    min-height: calc(100vh - 140px) !important;
   }
 
-  /* Enhanced sidebar with modern glass morphism */
+  /* Enhanced sidebar with mobile browser optimizations */
   .sidebar {
     position: fixed !important;
     bottom: 0 !important;
@@ -1982,19 +2007,26 @@ main {
     right: 0 !important;
     width: 100% !important;
     height: auto !important;
-    max-height: 120px !important;
-    background: linear-gradient(135deg, rgba(46, 46, 51, 0.95), rgba(65, 65, 80, 0.9)) !important;
+    max-height: 100px !important;
+    background: linear-gradient(135deg, rgba(46, 46, 51, 0.98), rgba(65, 65, 80, 0.95)) !important;
     backdrop-filter: blur(25px) saturate(180%) !important;
-    border-top: 3px solid transparent !important;
-    border-image: linear-gradient(90deg, rgba(255, 219, 112, 0.6), rgba(120, 119, 198, 0.4), rgba(255, 219, 112, 0.6)) 1 !important;
-    border-radius: 25px 25px 0 0 !important;
-    padding: 20px !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border-top: 2px solid rgba(255, 219, 112, 0.3) !important;
+    border-radius: 20px 20px 0 0 !important;
+    padding: 15px 20px !important;
     z-index: 1000 !important;
     box-shadow:
-      0 -15px 40px rgba(0, 0, 0, 0.5),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 50px rgba(255, 219, 112, 0.1) !important;
+      0 -10px 30px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
     animation: slideUpEntry 0.8s ease-out;
+    /* Safari mobile specific fixes */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    /* Prevent content shifting */
+    contain: layout style paint;
+    /* Safe area support */
+    padding-bottom: calc(15px + env(safe-area-inset-bottom, 0)) !important;
   }
 
   @keyframes slideUpEntry {
@@ -2009,14 +2041,17 @@ main {
   }
 
   .sidebar.active {
-    max-height: 400px !important;
+    max-height: 350px !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   .sidebar-info {
     display: flex !important;
     align-items: center !important;
-    gap: 15px !important;
+    gap: 12px !important;
     flex-direction: row !important;
+    width: 100% !important;
   }
 
   .avatar-box {
@@ -2064,22 +2099,25 @@ main {
   /* Enhanced mobile navbar with floating design */
   .navbar {
     position: fixed !important;
-    bottom: 130px !important;
+    bottom: 110px !important;
     left: 15px !important;
     right: 15px !important;
     top: auto !important;
     width: auto !important;
     background: linear-gradient(135deg, rgba(46, 46, 51, 0.95), rgba(35, 35, 45, 0.9)) !important;
     backdrop-filter: blur(25px) saturate(180%) !important;
-    border-radius: 25px !important;
-    padding: 12px !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border-radius: 20px !important;
+    padding: 10px !important;
     box-shadow:
-      0 15px 35px rgba(0, 0, 0, 0.4),
+      0 10px 25px rgba(0, 0, 0, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
-      0 0 20px rgba(255, 219, 112, 0.15) !important;
+      0 0 15px rgba(255, 219, 112, 0.15) !important;
     z-index: 999 !important;
     border: 1px solid rgba(255, 219, 112, 0.2);
-    animation: floatNav 3s ease-in-out infinite;
+    /* Remove animation to prevent layout shifts */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
   }
 
   @keyframes floatNav {
@@ -3366,6 +3404,189 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
 
+
+/* ===== ADDITIONAL MOBILE SAFARI & CHROME OPTIMIZATIONS ===== */
+
+/* Fix viewport issues on mobile Safari */
+@supports (-webkit-appearance: none) {
+  @media (max-width: 768px) {
+    body {
+      /* Fix Safari viewport height issues */
+      min-height: -webkit-fill-available;
+    }
+
+    .sidebar {
+      /* Fix sidebar positioning in Safari */
+      bottom: env(safe-area-inset-bottom, 0) !important;
+      padding-bottom: calc(20px + env(safe-area-inset-bottom, 0)) !important;
+    }
+  }
+}
+
+/* Chrome mobile specific optimizations */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .sidebar {
+    /* Better rendering on high-DPI Chrome mobile */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .avatar-box img {
+    /* Crisp image rendering on retina displays */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Touch-friendly interactive elements */
+@media (max-width: 768px) {
+  /* Larger touch targets */
+  .navbar-link,
+  .contact-item .contact-link,
+  .social-item .social-link,
+  .project-item .project-link,
+  .info_more-btn,
+  .modal-close-btn,
+  .filter-select,
+  .skill-tag {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Skill tags mobile optimization */
+  .skill-tag {
+    padding: 12px 16px !important;
+    margin: 8px 4px !important;
+    font-size: 14px !important;
+  }
+
+  .skill-tag span {
+    font-size: 0.8rem !important;
+  }
+
+  /* Remove hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .navbar-link:hover,
+    .project-item:hover,
+    .service-item:hover {
+      transform: none !important;
+      background: inherit !important;
+    }
+  }
+
+  /* Better scroll performance */
+  .main-content,
+  .project-list,
+  .service-list {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Prevent text selection issues on mobile */
+@media (max-width: 768px) {
+  .navbar-link,
+  .sidebar-info,
+  .title,
+  .contact-info,
+  .social-list {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Better font rendering on mobile */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Fix input zoom issues on iOS Safari */
+  input, textarea, select, .form-input {
+    font-size: 16px !important;
+    -webkit-appearance: none;
+    border-radius: 12px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Enhanced form styling for mobile */
+  .form-input {
+    min-height: 48px !important;
+    padding: 12px 16px !important;
+    box-sizing: border-box !important;
+  }
+
+  textarea.form-input {
+    min-height: 120px !important;
+    resize: vertical !important;
+  }
+
+  .form-btn {
+    min-height: 48px !important;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+    touch-action: manipulation !important;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Fix modal positioning on mobile */
+  .modal, .popup {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  /* Article content mobile optimization */
+  article {
+    padding: 20px 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  article[data-page] {
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+
+  /* Ensure headers are visible */
+  .page-title,
+  .article-title,
+  .h1, .h2, .h3, .h4 {
+    margin-top: 0 !important;
+    padding-top: 10px !important;
+  }
+
+  /* Contact form mobile optimization */
+  .contact-form {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .mapbox {
+    display: none !important;
+  }
+}
 
 /**
  * responsive larger than 1024px screen
