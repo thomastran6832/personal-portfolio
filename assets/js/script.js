@@ -11,8 +11,10 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+// sidebar toggle functionality for mobile (if button exists)
+if (sidebarBtn) {
+  sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+}
 
 
 
@@ -345,15 +347,30 @@ const pages = document.querySelectorAll("article[data-page]");
 
 // Function to activate a specific page
 function activatePage(targetPage) {
+  // Remove active class from all pages and nav links
+  for (let i = 0; i < pages.length; i++) {
+    pages[i].classList.remove("active");
+  }
+  for (let i = 0; i < navigationLinks.length; i++) {
+    navigationLinks[i].classList.remove("active");
+  }
+
+  // Add active class to target page
   for (let i = 0; i < pages.length; i++) {
     if (pages[i].dataset.page === targetPage) {
       pages[i].classList.add("active");
-      navigationLinks[i].classList.add("active");
-    } else {
-      pages[i].classList.remove("active");
-      navigationLinks[i].classList.remove("active");
+      break;
     }
   }
+
+  // Add active class to corresponding nav link
+  for (let i = 0; i < navigationLinks.length; i++) {
+    if (navigationLinks[i].innerHTML.toLowerCase() === targetPage) {
+      navigationLinks[i].classList.add("active");
+      break;
+    }
+  }
+
   // Update URL hash and save to localStorage
   window.location.hash = targetPage;
   localStorage.setItem('activeTab', targetPage);
