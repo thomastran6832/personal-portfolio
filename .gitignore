@@ -30,3 +30,5 @@ yarn-error.log*
 # Secret keys and configs
 config/secrets.js
 secrets.json
+# Local Netlify folder
+.netlify

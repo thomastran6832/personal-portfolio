@@ -141,12 +141,7 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
-// Slack integration - ensure URL is available
-const getSlackWebhookURL = () => {
-  return window.SLACK_WEBHOOK_URL ||
-         (typeof process !== 'undefined' && process.env && process.env.SLACK_WEBHOOK_URL) ||
-         'https://hooks.slack.com/services/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';
-};
+// Note: Slack integration is handled by Netlify function, no direct webhook needed in frontend
 
 async function sendToSlack(formData) {
   try {
